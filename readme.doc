@@ -1,7 +1,14 @@
-Sprint Planning #1 notes: Overall
+GitHub URL: https://github.com/agstapleton1025/GitCollab.git
+
+
+
+Sprint Planning #1 notes: 
+
+Overall:
 - Prior to today: Interviewing, work on prototype
 -Today: Initialize git and CSS and index files early
 -Tomorrow: build basic CSS and headers
+
 Individual:
 Amanda: 
 What did you do yesterday? 
@@ -10,6 +17,7 @@ What are you planning to do today?
 Continue updating the burndown chart
 Any problems are you facing?
 None, fixed the issues with burndown chart not updating 
+
 Alexa: 
 What did you do yesterday? 
 Created the css and index files 
@@ -17,6 +25,7 @@ What are you planning to do today?
 Starting to build out the files and publish the repo
 Any problems are you facing?
 None currently, thanks for asking
+
 Serena:
 What did you do yesterday?
 Adjusted/added trello tasks to better fit our user stories
@@ -24,6 +33,7 @@ What are you planning to do today?
 Cloning the repo and making small edits 
 Any problems are you facing?
 No, everything is good and we are all aligned 
+
 Lucas:
 What did you do yesterday? 
 Started justinmind protoype
@@ -32,7 +42,10 @@ Finalized prototype
 Any problems are you facing?
 Had initialization problem with repo clone, made an extra file on accident but is resolved
 
+
+
 Daily Scrum - Mar 7, 2023
+
 Alexa: 
 What did you do yesterday? 
 Continued building the base 
@@ -40,6 +53,7 @@ What are you planning to do today?
 Continuing base and working on JavaScript
 Any problems are you facing?
 Some issues remembering JS but working through it
+
 Amanda: 
 What did you do yesterday?
 Updated Trello and worked on the client prototype review 
@@ -47,6 +61,7 @@ What are you planning to do today?
 Work on README file and start to plan internal review
 Any problems you are facing?
 None
+
 Lucas:
 What did you do yesterday?
 Researched search bar methods
@@ -54,6 +69,7 @@ What are you planning to do today?
 Troubleshooted search bar and added it in 
 Any problems you are facing?
 Getting search bar on right side - margins
+
 Serena:
 What did you do yesterday?
 Brainstormed about filter bar
@@ -61,6 +77,8 @@ What are you planning to do today?
 Attempt to finish up filter bar
 Any problems you are facing?
 Determining when a drop down would be better than a check box 
+
+
 
 Daily Scrum - Day 14 3/12
 
@@ -71,6 +89,7 @@ What are you planning to do today?
 Meet with other group for external review 
 Any problems are you facing?
 None today 
+
 Alexa: 
 What did you do yesterday?
 Worked on filter column 
@@ -78,6 +97,7 @@ What are you planning to do today?
 Finish filter column and brainstorm log in/log out
 Any problems you are facing?
 None 
+
 Lucas:
 What did you do yesterday?
 We had the internal sprint review to look over our files so far
@@ -85,6 +105,7 @@ What are you planning to do today?
 Meeting with another group for our external review 
 Any problems you are facing?
 No issues right now 
+
 Serena:
 What did you do yesterday?
 Finished the filter bar and had our internal sprint review
@@ -92,6 +113,7 @@ What are you planning to do today?
 Adding information to the ReadMe doc and having our external review
 Any problems you are facing?
 No, everything looks good.
+
 
 
 Sprint Review:
