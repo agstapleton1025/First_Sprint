@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../IS371"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "First_Sprint"
+	}
+}
