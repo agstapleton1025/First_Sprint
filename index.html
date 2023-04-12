@@ -1,122 +1,218 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UW Union Candidate Tracking System</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/8a80b728dc.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-color: red;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UW Union Candidate Tracking System</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-  <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      background-color: lightgray;
-    }
-  </style>
-</head>
-
-<body>
-  <!--Navbar-->
-  <nav>
-    <div class="navbar has-background-success-dark" role="navigation" aria-label="main navigation" id="navbar">
+  <body>
+    <!--Navbar-->
+    <nav>
+      <div
+        class="navbar has-background-success-dark"
+        role="navigation"
+        aria-label="main navigation"
+        id="navbar"
+      >
         <div class="navbar-brand">
-
           <div class="navbar-item ml-5 searchbar">
-            <input id="searchbar" onkeyup="search_applicants()" type="text" name="search"
-              placeholder="Search applicants.." />
+            <input
+              id="searchbar"
+              onkeyup="search_applicants()"
+              type="text"
+              name="search"
+              placeholder="Search applicants.."
+            />
           </div>
         </div>
         <div class="navbar-menu is-black justify-content-end">
-            <div class="navbar-item ml-auto">
-                <!-- logo -->
-                <h6 class="title is-size-1 m-3 has-text-white"> Union HR Employee Tracking System</h6>
+          <div class="navbar-item ml-auto">
+            <!-- logo -->
+            <h6 class="title is-size-1 m-3 has-text-white">
+              Union HR Employee Tracking System
+            </h6>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <button id="signinbtn" class="loggedout button">Sign In</button>
             </div>
-          
-           
-           
-        
-        
-            <div class="navbar-end">
-                
-                <div class="navbar-item">
-                    <button id="signinbtn" class="loggedout button">Sign In</button>
-                </div>
-                <div class="navbar-item">
-                    <button id="signoutbtn" class="loggedin button">Sign Out</button>
-                </div>
-                 <div class="navbar-end">
-   
-  </div>
-            </div>  
+            <div class="navbar-item">
+              <button id="signoutbtn" class="loggedin button">Sign Out</button>
+            </div>
+            <div class="navbar-end"></div>
+          </div>
         </div>
+      </div>
+    </nav>
+
+    <!--3 Column Layout-->
+
+    <!--Column 1-->
+
+    <div class="columns">
+      <div class="column has-background-lightgrey is-one-quarter">
+        <h3 class="is-size-4 has-text-weight-bold has-text-centered mb-2">
+          Preferences:
+        </h3>
+        <br />
+        <h3 class="has-text-weight-bold">Work Unit</h3>
+        <div>
+          <div>
+            <input
+              type="checkbox"
+              name="WorkUnit"
+              value="FoodServices"
+              id="FoodServices"
+            /><label for="FoodServices">Food Services</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="WorkUnit"
+              value="OfficeAdmin"
+              id="OfficeAdmin"
+            /><label for="OfficeAdmin">Office & Administration</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="WorkUnit"
+              value="BuildingSupport"
+              id="BuildingSupport"
+            /><label for="BuildingSupport">Building Support</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="WorkUnit"
+              value="Arts"
+              id="Arts"
+            /><label for="Arts">Arts & Activities</label>
+          </div>
+        </div>
+        <br />
+        <h3 class="has-text-weight-bold">Grad Year</h3>
+        <div>
+          <div>
+            <input
+              type="checkbox"
+              name="GradYear"
+              value="Spring2023"
+              id="Spring2023"
+            /><label for="Spring2023">Spring 2023</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="GradYear"
+              value="Fall2024"
+              id="Fall2024"
+            /><label for="Fall2024">Fall 2024</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="GradYear"
+              value="Spring2024"
+              id="Spring2024"
+            /><label for="Spring2024">Spring 2024</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="GradYear"
+              value="Fall2025"
+              id="Fall2025"
+            /><label for="Fall2025">Fall 2025</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="GradYear"
+              value="Spring2025"
+              id="Spring2025"
+            /><label for="Spring2025">Spring 2025</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="GradYear"
+              value="Fall2026"
+              id="Fall2026"
+            /><label for="Fall2026">Fall 2026</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="GradYear"
+              value="Spring2026"
+              id="Spring2026"
+            /><label for="Spring2026">Spring 2026</label>
+          </div>
+        </div>
+        <br />
+        <h3 class="has-text-weight-bold">Term Preference</h3>
+        <div>
+          <div>
+            <input
+              type="checkbox"
+              name="TermPreference"
+              value="Fall"
+              id="Fall"
+            /><label for="Fall">Fall</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="TermPreference"
+              value="Spring"
+              id="Spring"
+            /><label for="Spring">Spring</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="TermPreference"
+              value="Summer"
+              id="Summer"
+            /><label for="Summer">Summer</label>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <!--Column 2-->
+      <div class="column has-background-white is-half"></div>
+
+      <!--Column 3-->
+      <div
+        class="column is-one-quarter has-background-lightgrey has-text-centered"
+      ></div>
     </div>
-</nav>
 
-  <!--3 Column Layout-->
+    <!--Footer-->
 
-  <!--Column 1-->
-
-  <div class="columns">
-    <div class="column has-background-lightgrey is-one-quarter">
-      <h3 class="is-size-4 has-text-weight-bold has-text-centered mb-2">
-        Preferences:
-      </h3><br>
-      <h3 class="has-text-weight-bold">Work Unit</h3>
-      <div>
-        <div><input type="checkbox" name="WorkUnit" value="FoodServices" id="FoodServices"><label
-            for="FoodServices">Food Services</label></div>
-        <div><input type="checkbox" name="WorkUnit" value="OfficeAdmin" id="OfficeAdmin"><label for="OfficeAdmin">Office
-            & Administration</label></div>
-        <div><input type="checkbox" name="WorkUnit" value="BuildingSupport" id="BuildingSupport"><label
-            for="BuildingSupport">Building Support</label></div>
-        <div><input type="checkbox" name="WorkUnit" value="Arts" id="Arts"><label for="Arts">Arts & Activities</label>
-        </div>
+    <footer class="footer has-background-white bis">
+      <div class="content has-text-centered has-text-white is-size-7">
+        <p>
+          <a href="https://union.wisc.edu/get-involved/jobs/">Open Positions</a>
+        </p>
       </div>
-      <br>
-      <h3 class="has-text-weight-bold">Grad Year</h3>
-      <div>
-        <div><input type="checkbox" name="GradYear" value="Spring2023" id="Spring2023"><label for="Spring2023">Spring
-            2023</label></div>
-        <div><input type="checkbox" name="GradYear" value="Fall2024" id="Fall2024"><label for="Fall2024">Fall
-            2024</label></div>
-        <div><input type="checkbox" name="GradYear" value="Spring2024" id="Spring2024"><label for="Spring2024">Spring
-            2024</label></div>
-        <div><input type="checkbox" name="GradYear" value="Fall2025" id="Fall2025"><label for="Fall2025">Fall
-            2025</label></div>
-        <div><input type="checkbox" name="GradYear" value="Spring2025" id="Spring2025"><label for="Spring2025">Spring
-            2025</label></div>
-        <div><input type="checkbox" name="GradYear" value="Fall2026" id="Fall2026"><label for="Fall2026">Fall
-            2026</label></div>
-        <div><input type="checkbox" name="GradYear" value="Spring2026" id="Spring2026"><label for="Spring2026">Spring
-            2026</label></div>
-
-      </div>
-      <br>
-      <h3 class="has-text-weight-bold">Term Preference</h3>
-      <div>
-        <div><input type="checkbox" name="TermPreference" value="Fall" id="Fall"><label for="Fall">Fall</label></div>
-        <div><input type="checkbox" name="TermPreference" value="Spring" id="Spring"><label for="Spring">Spring</label>
-        </div>
-        <div><input type="checkbox" name="TermPreference" value="Summer" id="Summer"><label for="Summer">Summer</label>
-        </div>
-      </div>
-    </div><br>
-
-    <!--Column 2-->
-    <div class="column has-background-white is-half"></div>
-
-    <!--Column 3-->
-    <div class="column is-one-quarter has-background-lightgrey has-text-centered"></div>
-  </div>
-
-  <!--Footer-->
-
-  <footer class="footer has-background-white bis">
-    <div class="content has-text-centered has-text-white is-size-7">
-      <p>
-        <a href="https://union.wisc.edu/get-involved/jobs/">Open Positions</a>
-      </p>
-    </div>
-  </footer>
-</body>
-
+    </footer>
+  </body>
 </html>
