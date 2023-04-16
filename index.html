@@ -20,57 +20,50 @@
         margin: auto;
         margin-left: 8rem;
       }
-      .has-bg-img {
-        background-image: url("images/real.png");
-        background-size: cover;
-        width: 100%;
-      }
     </style>
   </head>
 
   <body>
     <!--Navbar-->
-    <nav>
-      <div
-        class="navbar has-background-success-dark"
-        role="navigation"
-        aria-label="main navigation"
-        id="navbar"
-      >
-        <div class="navbar-brand">
-          <div class="navbar-item ml-5 searchbar">
-            <input
-              id="searchbar"
-              onkeyup="search_applicants()"
-              type="text"
-              name="search"
-              placeholder="Search applicants.."
-            />
-          </div>
-        </div>
-        <div class="navbar-menu is-black justify-content-end">
-          <div class="navbar-item ml-auto">
-            <!-- logo -->
-            <h6 class="title is-size-1 m-3 has-text-white">
-              Union HR Employee Tracking System
-            </h6>
-          </div>
 
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <button id="signinbtn" class="loggedout button">Sign In</button>
-            </div>
-            <div class="navbar-item">
-              <button id="signoutbtn" class="loggedin button">Sign Out</button>
-            </div>
-            <div class="navbar-end"></div>
+    <nav
+      class="navbar has-background-success-dark"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <img
+          class="navbar-item"
+          src="images/realfinal.png"
+          alt=""
+          width="150"
+          height="150"
+        />
+      </div>
+      <div class="navbar-item ml-auto">
+        <!-- logo -->
+        <h6 class="title is-size-1 m-5 has-text-white">
+          Union HR Employee Tracking System
+        </h6>
+      </div>
+
+      <div class="navbar-menu is-active">
+        <div class="navbar-end">
+          <div class="navbar-item signedin">
+            <span id="currentuser" class="has-text-white"></span>
           </div>
+          &nbsp;
+          <div class="navbar-item is-light button signedout mt-6">
+            <a id="signinbtn">Sign In</a>
+          </div>
+          &nbsp;
+          <div class="navbar-item is-light button signedin mt-6">
+            <a id="signoutbtn">Sign Out</a>
+          </div>
+          &nbsp;
         </div>
       </div>
     </nav>
-    <!--<section class="hero is-small mb-3">
-      <div class="hero-body has-bg-img"></div>
-    </section>--!>
 
     <!--3 Column Layout-->
 
@@ -207,5 +200,8 @@
         </p>
       </div>
     </footer>
+
+    <!-- add your own js file as the last line in index.html file -->
+    <script src="app.js"></script>
   </body>
 </html>
