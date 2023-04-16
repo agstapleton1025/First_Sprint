@@ -24,6 +24,38 @@
   </head>
 
   <body>
+    <!-- sign in modal -->
+
+    <div class="modal" id="signin_modal">
+      <div class="modal-background" id="signin_modalbg"></div>
+      <div class="modal-content p-6 has-background-white">
+        <h1 class="is-size-3 title">Sign In!</h1>
+        <form id="signin_form">
+          <!-- Email -->
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input type="email" id="email_" />
+            </div>
+          </div>
+          <!-- Password -->
+          <div class="field">
+            <label class="label">Passowrd</label>
+            <div class="control">
+              <input type="password" id="password_" />
+            </div>
+          </div>
+
+          <!-- submit -->
+          <div class="field">
+            <div class="control">
+              <button class="m-3 button is-link">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!--Navbar-->
 
     <nav
@@ -31,6 +63,7 @@
       role="navigation"
       aria-label="main navigation"
     >
+      <!-- logo -->
       <div class="navbar-brand">
         <img
           class="navbar-item"
@@ -41,7 +74,7 @@
         />
       </div>
       <div class="navbar-item ml-auto">
-        <!-- logo -->
+        <!--Title-->
         <h6 class="title is-size-1 m-5 has-text-white">
           Union HR Employee Tracking System
         </h6>
