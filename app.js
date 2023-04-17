@@ -17,3 +17,8 @@ signinbtn.addEventListener("click", () => {
 signin_modalbg.addEventListener("click", () => {
   signin_modal.classList.remove("is-active");
 });
+// sign out users
+
+r_e("signoutbtn").addEventListener("click", () => {
+  auth.signOut().then(() => {});
+});
