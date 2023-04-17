@@ -17,3 +17,18 @@ signinbtn.addEventListener("click", () => {
 signin_modalbg.addEventListener("click", () => {
   signin_modal.classList.remove("is-active");
 });
+
+
+// User Accounts
+let user1 = {
+  name: 'admin1',
+  admin: true
+};
+
+let user2 = {
+  name: 'nonadmin1',
+  admin: false
+};
+
+db.collection("users").add(user1);
+db.collection("users").add(user2);
