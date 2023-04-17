@@ -153,19 +153,18 @@ Daily Scrum 1:
 Individual:
 Amanda: 
 What did you do yesterday? 
+researched connecting firebase  and Google forms
 
 What are you planning to do today?
-
+worked on styling 
 Any problems are you facing?
+None
 
 Alexa: 
 What did you do yesterday? 
 Yesterday I started working on fixing the styling of the site.
-
 What are you planning to do today?
-
 Today im continuing to style the site using corrections from the professor and the client.
-
 Any problems are you facing?
 Not able to fetch or pull anything from the repo at the moment, need to troubleshoot
 
@@ -190,22 +189,18 @@ Daily Scrum 2:
 Individual:
 Amanda: 
 What did you do yesterday? 
-
+worked on formatting for header and navbar
 What are you planning to do today?
-
+researched connecting candidate cards 
 Any problems are you facing?
+None
 
 Alexa: 
 What did you do yesterday? 
-
 Yesterday I worked on putting together the google form and researching the way we are going to set up our database.
-
 What are you planning to do today?
-
 Today I am planning on transforming the google form responses into a firestore collection manually.
-
 Any problems are you facing?
-
 Still unsure how to connect the google app to the firestore collection.
 
 
