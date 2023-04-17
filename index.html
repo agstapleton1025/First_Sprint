@@ -215,6 +215,12 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    // define authentication variable
+    let auth = firebase.auth();
+    let db = firebase.firestore();
+
+    // define a storage reference
+    let ref = firebase.storage().ref();
   </script>
 
   <!-- add your own js file as the last line in index.html file -->
