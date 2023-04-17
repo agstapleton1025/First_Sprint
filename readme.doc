@@ -237,6 +237,7 @@ f.  	Which group was invited? What are your observations/notes? Everybody was pr
 Other group's review: Group 10
 Everyone was present, They made updates to their account creation, added gallery updating so their viewers get a better picture of the photographer's work, and people can change their email/username, etc.
 
+<<<<<<< HEAD
 User Stories:
 Student recruiters: As a student recruiter, I would like to be able to visit any of our union sites to view new events and job postings to start matching candidates to open jobs.
 Admin: As an admin I want to be able to use the google dorm I created to filter through candidates based off their responses.
@@ -249,3 +250,7 @@ Create candidate forms
 Trello board: https://trello.com/b/AUpfIQHA/sprint-2
 
 Burndown chart: https://drive.google.com/file/d/1kjiYbIRv12Sx3px9QKwWedUq9aA4HIwu/view?usp=share_link
+=======
+Trello Board Link: https://trello.com/b/AUpfIQHA/sprint-2
+ 
+>>>>>>> 30e53c0 (trello link added)
