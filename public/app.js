@@ -20,20 +20,14 @@ signin_modalbg.addEventListener("click", () => {
 
 // get the email and password
 
-let email = r_e("email_").value;
-let password = r_e("password_").value;
+let email = r_e("email").value;
+let password = r_e("password").value;
 
 // send email and password to firebase to create the user
 
 auth.createUserWithEmailAndPassword(email, password).then((user) => {
   //configure_message_bar(`Welcome ${auth.currentUser.email}`);
 
-  // reset the form
-  r_e("signup_form").reset();
-
-  // hide the modal
-  r_e("signup_modal").classList.remove("is-active");
-});
 // sign out users
 
 r_e("signoutbtn").addEventListener("click", () => {
