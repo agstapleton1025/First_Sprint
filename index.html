@@ -8,8 +8,11 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <script
       src="https://kit.fontawesome.com/8a80b728dc.js"
       crossorigin="anonymous"
@@ -232,15 +235,34 @@
       <div class="content has-text-centered">
         <p>
           <a href="https://union.wisc.edu/get-involved/jobs/">Open Positions</a>
-          <a href="https://www.facebook.com/TheWisconsinUnion" class="fa fa-facebook"></a>
-          <a href="https://twitter.com/WisconsinUnion" class="fa fa-twitter"></a>
-          <a href="https://www.youtube.com/user/wisconsinunion" class="fa fa-youtube"></a>
+          <a
+            href="https://www.facebook.com/TheWisconsinUnion"
+            class="fa fa-facebook"
+          ></a>
+          <a
+            href="https://twitter.com/WisconsinUnion"
+            class="fa fa-twitter"
+          ></a>
+          <a
+            href="https://www.youtube.com/user/wisconsinunion"
+            class="fa fa-youtube"
+          ></a>
         </p>
-        
       </div>
     </footer>
 
     <!--Connect your Firebase -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
 
     <script>
       const firebaseConfig = {
@@ -253,7 +275,12 @@
       };
 
       // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
+      // define authentication variable
+      let auth = firebase.auth();
+      let db = firebase.firestore();
+      // define storage reference
+      let ref = firebase.storage().ref();
     </script>
 
     <!-- add your own js file as the last line in index.html file -->

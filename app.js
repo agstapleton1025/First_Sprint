@@ -26,7 +26,7 @@ let password = r_e("password").value;
 // send email and password to firebase to create the user
 
 auth.createUserWithEmailAndPassword(email, password).then((user) => {
-  configure_message_bar(`Welcome ${auth.currentUser.email}`);
+  //configure_message_bar(`Welcome ${auth.currentUser.email}`);
 
   // reset the form
   r_e("signup_form").reset();
