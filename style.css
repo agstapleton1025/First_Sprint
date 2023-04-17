@@ -17,3 +17,22 @@
   input[type=text]:focus {
     width: 70%;
   }
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  .fa {
+    padding: 60px;
+    font-size: 90px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+  }
+  .fa-youtube {
+    background: #bb0000;
+    color: white;
+  }
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
