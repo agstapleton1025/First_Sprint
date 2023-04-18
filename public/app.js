@@ -1,7 +1,4 @@
-//id function
-function r_e(id) {
-  return document.querySelector(`#${id}`);
-}
+
 
 // global variables
 
@@ -17,30 +14,32 @@ function configure_nav_bar(user) {
   let signedins = document.querySelectorAll(".signedin");
   let signedouts = document.querySelectorAll(".signedout");
 
-  if (user) {
-    // show all elements with the class signedin AND hide all elements with the class signedout
+  // functions
 
-    signedins.forEach((link) => {
-      link.classList.remove("is-hidden");
-    });
-
-    signedouts.forEach((link) => {
-      link.classList.add("is-hidden");
-    });
+  function configure_nav_bar(user) {
+    if (user) {
+    } else {
+    }
   }
-  // user is signed out
-  else {
-    // hide all elements with the class signedin AND show all elements with the class signedout
-
-    signedins.forEach((link) => {
-      link.classList.add("is-hidden");
-    });
-
-    signedouts.forEach((link) => {
-      link.classList.remove("is-hidden");
-    });
+  
+  function r_e(id) {
+    return document.querySelector(`#${id}`);
   }
+  
+function configure_message_bar(msg) {
+  r_e("message_bar").innerHTML = msg;
+
+  // make the message bar hidden
+
+  r_e("message_bar").classList.remove("is-hidden");
+
+  // after 2 seconds, make the message bar hidden again
+  setTimeout(() => {
+    r_e("message_bar").classList.add("is-hidden");
+    r_e("message_bar").innerHTML = "";
+  }, 2000);
 }
+
 // sign-up modal link
 signupbtn.addEventListener("click", () => {
   signup_modal.classList.add("is-active");
@@ -59,12 +58,6 @@ signin_modalbg.addEventListener("click", () => {
   signin_modal.classList.remove("is-active");
 });
 
-// sign out users
-
-r_e("signoutbtn").addEventListener("click", () => {
-  auth.signOut().then(() => {});
-});
-
 // sign up users
 
 r_e("signup_form").addEventListener("submit", (e) => {
@@ -76,9 +69,12 @@ r_e("signup_form").addEventListener("submit", (e) => {
   let email = r_e("email").value;
   let password = r_e("password").value;
 
+  // console.log(email, password);
+
   // send email and password to firebase to create the user
 
   auth.createUserWithEmailAndPassword(email, password).then((user) => {
+    // console.log("user created!");
     configure_message_bar(`Welcome ${auth.currentUser.email}`);
 
     // reset the form
@@ -92,7 +88,12 @@ r_e("signup_form").addEventListener("submit", (e) => {
 // sign out users
 
 r_e("signoutbtn").addEventListener("click", () => {
-  auth.signOut().then(() => {});
+  auth.signOut().then(() => {
+    // console.log("user signed out!");
+    configure_message_bar("You have successfully signed out!");
+
+    r_e("currentuser").innerHTML = "";
+  });
 });
 
 // sign in users
@@ -109,6 +110,13 @@ r_e("signin_form").addEventListener("submit", (e) => {
   // send email/password to firebase for authentication
 
   auth.signInWithEmailAndPassword(email, password).then((user) => {
+    // console.log(user.user.email);
+    configure_message_bar(`${user.user.email} has successfully signed in}`);
+
+    // display the user email on the nav bar
+
+    r_e("currentuser").innerHTML = user.user.email;
+
     // reset the form
     r_e("signin_form").reset();
 
@@ -116,6 +124,18 @@ r_e("signin_form").addEventListener("submit", (e) => {
     r_e("signin_modal").classList.remove("is-active");
   });
 });
+
+// keep track of user authenticaiton status
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    alert("user signed in");
+  } else {
+    alert("user signed out");
+  }
+});
+
+configure_nav_bar(user.email);
 
 // User Accounts
 //let user1 = {
