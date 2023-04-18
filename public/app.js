@@ -20,19 +20,20 @@ function r_e(id) {
   return document.querySelector(`#${id}`);
 }
 
-function configure_message_bar(msg) {
-  r_e("message_bar").innerHTML = msg;
+//function configure_message_bar(msg)
+//{
+//r_e("message_bar").innerHTML = msg;
 
-  // make the message bar hidden
+// make the message bar hidden
 
-  r_e("message_bar").classList.remove("is-hidden");
+// r_e("message_bar").classList.remove("is-hidden");
 
-  // after 2 seconds, make the message bar hidden again
-  setTimeout(() => {
-    r_e("message_bar").classList.add("is-hidden");
-    r_e("message_bar").innerHTML = "";
-  }, 2000);
-}
+// after 2 seconds, make the message bar hidden again
+//setTimeout(() => {
+// r_e("message_bar").classList.add("is-hidden");
+// r_e("message_bar").innerHTML = "";
+//}, 2000);
+//}
 
 // sign-up modal link
 signupbtn.addEventListener("click", () => {
@@ -53,13 +54,13 @@ signin_modalbg.addEventListener("click", () => {
 });
 
 // post recipe nav bar link
-postRecipeBtn.addEventListener("click", () => {
-  // show the form
-  hidden_form.classList.remove("is-hidden");
+//postRecipeBtn.addEventListener("click", () => {
+// show the form
+// hidden_form.classList.remove("is-hidden");
 
-  // hide the content div
-  content.classList.add("is-hidden");
-});
+// hide the content div
+//content.classList.add("is-hidden");
+//});
 
 // sign up users
 
@@ -78,7 +79,7 @@ r_e("signup_form").addEventListener("submit", (e) => {
 
   auth.createUserWithEmailAndPassword(email, password).then((user) => {
     // console.log("user created!");
-    configure_message_bar(`Welcome ${auth.currentUser.email}`);
+    //configure_message_bar(`Welcome ${auth.currentUser.email}`);
 
     // reset the form
     r_e("signup_form").reset();
@@ -93,7 +94,7 @@ r_e("signup_form").addEventListener("submit", (e) => {
 r_e("signoutbtn").addEventListener("click", () => {
   auth.signOut().then(() => {
     // console.log("user signed out!");
-    configure_message_bar("You have successfully signed out!");
+    //configure_message_bar("You have successfully signed out!");
 
     // hide the user email from the nav bar
 
@@ -116,7 +117,6 @@ r_e("signin_form").addEventListener("submit", (e) => {
 
   auth.signInWithEmailAndPassword(email, password).then((user) => {
     // console.log(user.user.email);
-    configure_message_bar(`${user.user.email} has successfully signed in}`);
 
     // display the user email on the nav bar
 
