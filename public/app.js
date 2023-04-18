@@ -5,9 +5,22 @@ function r_e(id) {
 
 // global variables
 
+let signupbtn = document.querySelector("#signupbtn");
+let signup_modal = document.querySelector("#signup_modal");
+let signup_modalbg = document.querySelector("#signup_modalbg");
+
 let signinbtn = document.querySelector("#signinbtn");
 let signin_modal = document.querySelector("#signin_modal");
 let signin_modalbg = document.querySelector("#signin_modalbg");
+
+// sign-up modal link
+signupbtn.addEventListener("click", () => {
+  signup_modal.classList.add("is-active");
+});
+
+signup_modalbg.addEventListener("click", () => {
+  signup_modal.classList.remove("is-active");
+});
 
 // sign-in modal link
 signinbtn.addEventListener("click", () => {
@@ -47,6 +60,7 @@ r_e("signup_form").addEventListener("submit", (e) => {
     r_e("signup_modal").classList.remove("is-active");
   });
 });
+
 // sign out users
 
 r_e("signoutbtn").addEventListener("click", () => {
