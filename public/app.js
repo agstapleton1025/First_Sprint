@@ -11,29 +11,37 @@ let signin_modalbg = document.querySelector("#signin_modalbg");
 // functions
 
 function configure_nav_bar(user) {
+  let signedins = document.querySelectorAll(".signedin");
+  let signedouts = document.querySelectorAll(".signedout");
+
   if (user) {
-  } else {
+    // show all elements with the class signedin AND hide all elements with the class signedout
+
+    signedins.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
+
+    signedouts.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+  }
+  // user is signed out
+  else {
+    // hide all elements with the class signedin AND show all elements with the class signedout
+
+    signedins.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+
+    signedouts.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
   }
 }
 
 function r_e(id) {
   return document.querySelector(`#${id}`);
 }
-
-//function configure_message_bar(msg)
-//{
-//r_e("message_bar").innerHTML = msg;
-
-// make the message bar hidden
-
-// r_e("message_bar").classList.remove("is-hidden");
-
-// after 2 seconds, make the message bar hidden again
-//setTimeout(() => {
-// r_e("message_bar").classList.add("is-hidden");
-// r_e("message_bar").innerHTML = "";
-//}, 2000);
-//}
 
 // sign-up modal link
 signupbtn.addEventListener("click", () => {
@@ -53,15 +61,6 @@ signin_modalbg.addEventListener("click", () => {
   signin_modal.classList.remove("is-active");
 });
 
-// post recipe nav bar link
-//postRecipeBtn.addEventListener("click", () => {
-// show the form
-// hidden_form.classList.remove("is-hidden");
-
-// hide the content div
-//content.classList.add("is-hidden");
-//});
-
 // sign up users
 
 r_e("signup_form").addEventListener("submit", (e) => {
@@ -79,7 +78,6 @@ r_e("signup_form").addEventListener("submit", (e) => {
 
   auth.createUserWithEmailAndPassword(email, password).then((user) => {
     // console.log("user created!");
-    //configure_message_bar(`Welcome ${auth.currentUser.email}`);
 
     // reset the form
     r_e("signup_form").reset();
@@ -94,7 +92,6 @@ r_e("signup_form").addEventListener("submit", (e) => {
 r_e("signoutbtn").addEventListener("click", () => {
   auth.signOut().then(() => {
     // console.log("user signed out!");
-    //configure_message_bar("You have successfully signed out!");
 
     // hide the user email from the nav bar
 
