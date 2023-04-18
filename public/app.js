@@ -41,21 +41,6 @@ function configure_nav_bar(user) {
     });
   }
 }
-
-function configure_message_bar(msg) {
-  r_e("message_bar").innerHTML = msg;
-
-  // make the message bar hidden
-
-  r_e("message_bar").classList.remove("is-hidden");
-
-  // after 2 seconds, make the message bar hidden again
-  setTimeout(() => {
-    r_e("message_bar").classList.add("is-hidden");
-    r_e("message_bar").innerHTML = "";
-  }, 2000);
-}
-
 // sign-up modal link
 signupbtn.addEventListener("click", () => {
   signup_modal.classList.add("is-active");
