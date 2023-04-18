@@ -13,6 +13,49 @@ let signinbtn = document.querySelector("#signinbtn");
 let signin_modal = document.querySelector("#signin_modal");
 let signin_modalbg = document.querySelector("#signin_modalbg");
 
+function configure_nav_bar(user) {
+  let signedins = document.querySelectorAll(".signedin");
+  let signedouts = document.querySelectorAll(".signedout");
+
+  if (user) {
+    // show all elements with the class signedin AND hide all elements with the class signedout
+
+    signedins.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
+
+    signedouts.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+  }
+  // user is signed out
+  else {
+    // hide all elements with the class signedin AND show all elements with the class signedout
+
+    signedins.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+
+    signedouts.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
+  }
+}
+
+function configure_message_bar(msg) {
+  r_e("message_bar").innerHTML = msg;
+
+  // make the message bar hidden
+
+  r_e("message_bar").classList.remove("is-hidden");
+
+  // after 2 seconds, make the message bar hidden again
+  setTimeout(() => {
+    r_e("message_bar").classList.add("is-hidden");
+    r_e("message_bar").innerHTML = "";
+  }, 2000);
+}
+
 // sign-up modal link
 signupbtn.addEventListener("click", () => {
   signup_modal.classList.add("is-active");
@@ -51,7 +94,7 @@ r_e("signup_form").addEventListener("submit", (e) => {
   // send email and password to firebase to create the user
 
   auth.createUserWithEmailAndPassword(email, password).then((user) => {
-    //configure_message_bar(`Welcome ${auth.currentUser.email}`);
+    configure_message_bar(`Welcome ${auth.currentUser.email}`);
 
     // reset the form
     r_e("signup_form").reset();
