@@ -139,137 +139,129 @@
 
 // configure_nav_bar(user.email);
 var mybutton = document.querySelector("#mybutton");
- mybutton.addEventListener('click', function () {
-     var mymodal = document.querySelector("#mymodal")
-     mymodal.classList.add('is-active')
- })
+mybutton.addEventListener("click", function () {
+  var mymodal = document.querySelector("#mymodal");
+  mymodal.classList.add("is-active");
+});
 
-let signinbtn = document.querySelector('#signinbtn');
-let signinModal = document.querySelector('#signin-modal');
-let signinModalBg = document.querySelector('#signin-modalbg');
-signinbtn.addEventListener('click', () => {
-  signinModal.classList.add('is-active');
-})
+let signinbtn = document.querySelector("#signinbtn");
+let signinModal = document.querySelector("#signin-modal");
+let signinModalBg = document.querySelector("#signin-modalbg");
+signinbtn.addEventListener("click", () => {
+  signinModal.classList.add("is-active");
+});
 
-signinModalBg.addEventListener('click', () => {
-  signinModal.classList.remove('is-active');
+signinModalBg.addEventListener("click", () => {
+  signinModal.classList.remove("is-active");
 });
 
 // let postBtn = document.querySelector("#submit");
 // let content = document.querySelector('#content');
-let signup_form = document.querySelector("#signup_form")
+let signup_form = document.querySelector("#signup_form");
 
-signup_form.addEventListener('submit', (e) => {
-   e.preventDefault(); 
-   
-   let email = document.querySelector('#email').value;
-   let password = document.querySelector('#password').value;
- 
-   auth.createUserWithEmailAndPassword(email, password)
-     .then(() => {
-       console.log('user created successfully');
-       mymodal.classList.remove('is-active');
- 
-       signup_form.reset();
- 
-     })
-     .catch((error) => {
-       // console.log(error.message);
-       let signup_error = document.querySelector('#signup_error');
-       signup_error.innerHTML = `<p>${error.message}</p>`;
- 
- 
-     });
- })
+signup_form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
- let signin_form = document.querySelector('#signin_form');
+  let email = document.querySelector("#email").value;
+  let password = document.querySelector("#password").value;
 
- signin_form.addEventListener('submit', (e) => {
-   e.preventDefault();
-   // console.log('sign in form submitted!');
- 
-   // grab the email and password from the form
- 
-   let email = document.querySelector('#email_').value;
-   let password = document.querySelector('#password_').value;
- 
+  auth
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log("user created successfully");
+      mymodal.classList.remove("is-active");
 
- 
-   auth.signInWithEmailAndPassword(email, password)
-     .then((userCredentials) => {
-       console.log(userCredentials.user.email + " with the uid " + userCredentials.user.uid + " is logged in!");
-       // close the modal
-       signinModal.classList.remove('is-active');
- 
-       // reset 
-       signin_form.reset();
- 
-     })
-     .catch((error) => {
-       console.log(error.message);
- 
-       // grab the error div
- 
-       let signin_error = document.querySelector('#signin_error');
-       signin_error.innerHTML = `<p>${error.message}</p>`
-     })
- })
+      signup_form.reset();
+    })
+    .catch((error) => {
+      // console.log(error.message);
+      let signup_error = document.querySelector("#signup_error");
+      signup_error.innerHTML = `<p>${error.message}</p>`;
+    });
+});
 
+let signin_form = document.querySelector("#signin_form");
 
+signin_form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // console.log('sign in form submitted!');
 
-let loggedoutlinks = document.querySelectorAll('.loggedout');
-let loggedinlinks = document.querySelectorAll('.loggedin');
+  // grab the email and password from the form
 
+  let email = document.querySelector("#email_").value;
+  let password = document.querySelector("#password_").value;
+
+  auth
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredentials) => {
+      console.log(
+        userCredentials.user.email +
+          " with the uid " +
+          userCredentials.user.uid +
+          " is logged in!"
+      );
+      // close the modal
+      signinModal.classList.remove("is-active");
+
+      // reset
+      signin_form.reset();
+    })
+    .catch((error) => {
+      console.log(error.message);
+
+      // grab the error div
+
+      let signin_error = document.querySelector("#signin_error");
+      signin_error.innerHTML = `<p>${error.message}</p>`;
+    });
+});
+
+let loggedoutlinks = document.querySelectorAll(".loggedout");
+let loggedinlinks = document.querySelectorAll(".loggedin");
 
 function configureNav(user) {
+  if (user) {
+    document.querySelector(
+      "#welcome_user"
+    ).innerHTML = `${auth.currentUser.email}`;
+    // console.log(loggedoutlinks);
 
- if (user) {
-   
-   document.querySelector('#welcome_user').innerHTML = `${auth.currentUser.email}`;
-   // console.log(loggedoutlinks);
+    loggedinlinks.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
 
-   loggedinlinks.forEach((link) => {
-     link.classList.remove('is-hidden');
-   })
-
-   loggedoutlinks.forEach((link) => {
-     link.classList.add('is-hidden');
-   })
- }
- // no user is passed to the function (user is signed out)
- else {
-   document.querySelector('#welcome_user').innerHTML = "";
-   // show all the loggedout links
-   loggedoutlinks.forEach((link) => {
-     link.classList.remove('is-hidden');
-   })
-   // hide all the loggedin links
-   loggedinlinks.forEach((link) => {
-     link.classList.add('is-hidden');
-   })
- }
+    loggedoutlinks.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+  }
+  // no user is passed to the function (user is signed out)
+  else {
+    document.querySelector("#welcome_user").innerHTML = "";
+    // show all the loggedout links
+    loggedoutlinks.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
+    // hide all the loggedin links
+    loggedinlinks.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+  }
 }
 
-let signoutbtn = document.querySelector('#signoutbtn');
+let signoutbtn = document.querySelector("#signoutbtn");
 
-
-signoutbtn.addEventListener('click', () => {
- auth.signOut()
-   .then((msg) => {
-     console.log("user signed out!");
-   })
-})
-
-
+signoutbtn.addEventListener("click", () => {
+  auth.signOut().then((msg) => {
+    console.log("user signed out!");
+  });
+});
 
 auth.onAuthStateChanged((user) => {
-   if (user) {
-     console.log('user is now signed in!')
-     configureNav(user);
-     
-   } else {
-     console.log('user is now signed out!');
-     configureNav();
-     
-   }
- })
+  if (user) {
+    console.log("user is now signed in!");
+    configureNav(user);
+  } else {
+    console.log("user is now signed out!");
+    configureNav();
+  }
+});
