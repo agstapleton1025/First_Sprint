@@ -196,9 +196,9 @@ signin_form.addEventListener("submit", (e) => {
     .then((userCredentials) => {
       console.log(
         userCredentials.user.email +
-          " with the uid " +
-          userCredentials.user.uid +
-          " is logged in!"
+        " with the uid " +
+        userCredentials.user.uid +
+        " is logged in!"
       );
       // close the modal
       signinModal.classList.remove("is-active");
@@ -265,3 +265,91 @@ auth.onAuthStateChanged((user) => {
     configureNav();
   }
 });
+
+
+
+// Still figuring out the Load_Data Function:
+
+
+// function load_data(coll, loc, field, val) {
+//   let query = "";
+
+//   if (field && val) {
+//     query = db.collection(coll).where(field, '==', val);
+//   } else {
+//     query = db.collection(coll);
+//   }
+//   query.get().then(res => {
+
+//     let documents = res.docs;
+
+//     // html reference
+//     html = "";
+
+//     // check documents lenth if 0 => no rescues
+//     // if (documents.length == 0) {
+//     //   html += `<p class="has-text-centered is-size-3 " >No rescues posted at this time!<p>`
+//     //   }
+
+//     // loop through the documents array
+//     documents.forEach(doc => {
+//       html += `<div class="box has-background-dark has-text-light has-text-centered" style="border: solid white 2px" > `;
+
+//       // check if current user email matches email stored on the document
+//       if (auth.currentUser.email == doc.data().Email) {
+
+//         // show Delete Button for Poster
+//         html += `<h1 class="title has-text-centered has-text-light"> ${doc.data().Name} <button id="x_button" class="button is-pulled-right is-link" onclick="del_doc('rescues', '${doc.id}')">X</button> </h1>`; // add the rescue name inside an h1
+
+
+//       } else {
+//         // hide the x button from users
+//         html += `<h1 class="title has-text-centered has-text-light"> ${doc.data().Name} </h1>`; // add just the rescue name inside an h1
+
+
+//       }
+
+//       html += `<p  >${doc.data().Name}</p>`;
+//       html += `<p>Email: ${doc.data().Email}</p>`;
+//       html += `<p > UnitPreference: ${doc.data().UnitPreference}</p> `;
+//       html += `<p class="has-background-grey-lighter has-text-dark mt-5">  Contact: <a href="mailto:${doc.data().Email}"> ${doc.data().Email} </a>  </p>`
+//       html += `</div>`;
+
+//     })
+
+
+//   })
+// }
+// load_data('Candidate Information', 'contentchange')
+
+
+
+// // Testing how to pull our Doc data in Console.Log:
+
+// console.log(db.collection("UnionCandidateTracker").doc("Candidate Information"))
+
+// var docRef = db.collection("UnionCandidateTracker").doc("Candidate Information");
+
+// docRef.get().then((doc) => {
+//   if (doc.exists) {
+//     console.log("Document data:", doc.data());
+//   } else {
+//     // doc.data() will be undefined in this case
+//     console.log("No such document!");
+//   }
+// }).catch((error) => {
+//   console.log("Error getting document:", error);
+// });
+
+// console.log(docRef.get('Candidate Information'));
+
+
+
+// // More testing... Didn't create an output in the log and idk why
+
+// db.collection("UnionCandidateTracker").get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//     // doc.data() is never undefined for query doc snapshots
+//     console.log(doc.id, " => ", doc.data());
+//   });
+// });
