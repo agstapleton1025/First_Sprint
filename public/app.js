@@ -137,6 +137,63 @@
 //   }
 // });
 
+function show_cands(email) {
+  // check if we pass any data to ensure user is signed in
+  if (email) {
+    // show both left and right columns
+    r_e("l_col").classList.remove("is-hidden");
+    r_e("r_col").classList.remove("is-hidden");
+
+    db.collection("Candidate Information")
+      .get()
+      .then((data) => {
+        let mydocs = data.docs;
+        // check if no reviews have been added yet
+        if (mydocs.length == 0) {
+          content.innerHTML = `<p class="has-text-centered"> No candidates were added!</p>`;
+          return;
+        }
+
+        let html = ``;
+        mydocs.forEach((doc) => {
+          html += `
+
+        <div class="box" id="${doc.id}">
+
+            <h1 class="subtitle has-text-weight-bold is-size-4 has-text-centered "> ${
+              doc.data().name
+            } 
+            
+            </h1>
+            <p class="has-text-centered"><b>Added by:</b> ${
+              doc.data().email
+            }</p>
+            <p class="has-text-centered"><b>Type of Food:</b> ${
+              doc.data().name
+            }</p> 
+            <p class="has-text-centered"><b>Description:</b>${
+              doc.data().descr
+            }</p> 
+            
+        </div>
+        
+        `;
+        });
+        content.innerHTML = html;
+      });
+  } else {
+    // user is signed out
+    // prevent user from seeing content
+    r_e("title").innerHTML = ``;
+    content.innerHTML = `<p class="has-text-white has-text-centered has-text-weight-bold">You need to be signed-in to view the content.</p>`;
+
+    // hide the left column
+    r_e("l_col").classList.add("is-hidden");
+
+    // hide the right column
+    r_e("r_col").classList.add("is-hidden");
+  }
+}
 // configure_nav_bar(user.email);
 var mybutton = document.querySelector("#mybutton");
 mybutton.addEventListener("click", function () {
