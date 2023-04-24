@@ -165,99 +165,71 @@
     <!--Column 1-->
 
     <div class="columns mb-auto">
-      <div
-        class="column has-background-lightgrey is-one-quarter checks"
-        id="l_col"
-      >
+      <div class="column has-background-lightgrey is-one-quarter checks" id="l_col">
         <div class="is-centered">
           <h3 class="is-size-3 has-text-weight-bold mb-2">Preferences</h3>
         </div>
-        <br />
+        <br />  
         <h3 class="has-text-weight-bold is-size-5">Unit</h3>
         <div>
           <div>
-            <input
-              type="checkbox"
-              name="WorkUnit"
-              value="Dining and Hospitality"
-              id="Dining and Hospitality"
-            /><label for="Dining and Hospitality">
-              Dining and Hospitality</label
-            >
+            <input type="checkbox" name="unit" value="Dining and Hospitality" id="unit-Dining-and-Hospitality" />
+            <label for="unit-Dining-and-Hospitality">Dining and Hospitality</label>
           </div>
           <div>
-            <input
-              type="checkbox"
-              name="WorkUnit"
-              value="Facilities"
-              id="Facilities"
-            /><label for="Facilities"> Facilities</label>
+            <input type="checkbox" name="unit" value="Facilities" id="unit-Facilities" />
+            <label for="unit-Facilities">Facilities</label>
           </div>
           <div>
-            <input
-              type="checkbox"
-              name="WorkUnit"
-              value="Administration"
-              id="Administration"
-            /><label for="Administration"> Administration</label>
+            <input type="checkbox" name="unit" value="Administration" id="unit-Administration" />
+            <label for="unit-Administration">Administration</label>
           </div>
           <div>
-            <input
-              type="checkbox"
-              name="WorkUnit"
-              value="Hotel Services"
-              id="Hotel Services"
-            /><label for="Hotel Services"> Hotel Services</label>
+            <input type="checkbox" name="unit" value="Hotel Services" id="unit-Hotel-Services" />
+            <label for="unit-Hotel-Services">Hotel Services</label>
           </div>
         </div>
         <br />
         <h3 class="has-text-weight-bold is-size-5">Location</h3>
         <div>
           <div>
-            <input
-              type="checkbox"
-              name="Location"
-              value="Memorial Union"
-              id="Memorial Union"
-            /><label for="Memorial Union"> Memorial Union</label>
+            <input type="checkbox" name="location" value="Memorial Union" id="location-Memorial-Union" />
+            <label for="location-Memorial-Union">Memorial Union</label>
           </div>
           <div>
-            <input
-              type="checkbox"
-              name="Location"
-              value="Union South"
-              id="Union South"
-            /><label for="Union South"> Union South</label>
+            <input type="checkbox" name="location" value="Union South" id="location-Union-South" />
+            <label for="location-Union-South">Union South</label>
           </div>
-          <br />
-          <h3 class="has-text-weight-bold is-size-5 pb-2">Grad Year</h3>
-          <div>
-            <div class="select">
-              <select name="" id="">
-                <option value="Spring 2023">Spring 2023</option>
-                <option value="Fall 2024">Fall 2024</option>
-                <option value="Spring 2024">Spring 2024</option>
-                <option value="Fall 2025">Fall 2025</option>
-                <option value="Spring 2025">Spring 2025</option>
-                <option value="Fall 2026">Fall 2026</option>
-                <option value="Spring 2026">Spring 2026</option>
-              </select>
-            </div>
+        </div>
+        <br />
+        <h3 class="has-text-weight-bold is-size-5 pb-2">Grad Year</h3>
+        <div>
+          <div class="select">
+            <select name="gradYear" id="gradYear-filter">
+              <option value="All">All</option>
+              <option value="Spring 2023">Spring 2023</option>
+              <option value="Fall 2024">Fall 2024</option>
+              <option value="Spring 2024">Spring 2024</option>
+              <option value="Fall 2025">Fall 2025</option>
+              <option value="Spring 2025">Spring 2025</option>
+              <option value="Fall 2026">Fall 2026</option>
+              <option value="Spring 2026">Spring 2026</option>
+            </select>
           </div>
-          <br />
-          <h3 class="has-text-weight-bold is-size-5 pb-2">Term</h3>
-          <div>
-            <div class="select">
-              <select name="" id="">
-                <option value="Entire School Year">Entire School Year</option>
-                <option value="Spring/Summer">Spring/Summer</option>
-                <option value="Fall/Winter">Fall/Winter</option>
-                <option value="Indifferent">Indifferent</option>
-              </select>
-            </div>
-          </div>
-          <br />
-          <div>
+        </div>
+        <br />
+        <h3 class="has-text-weight-bold is-size-5 pb-2">Term</h3>
+        <div>
+          <div class="select">
+            <select name="term" id="term-filter">
+              <option value="All">All</option>
+              <option value="Entire School Year">Entire School Year</option>
+              <option value="Spring/Summer">Spring/Summer</option>
+              <option value="Fall/Winter">Fall/Winter</option>
+              <option value="Indifferent">Indifferent</option>
+            </select>
+            
+          <br />  
             <button
               class="button has-text-white has-text-weight-bold is-black is-medium is-full-width is-inline-block mr-2"
               id="searchbtn"
@@ -270,6 +242,7 @@
             >
               Reset
             </button>
+            
           </div>
         </div>
         <br />

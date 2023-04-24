@@ -343,50 +343,8 @@ docRef.get().then((doc) => {
   console.log("Error getting document:", error);
 });
 
-// const db = firebase.firestore();
-// const collectionRef = db.collection("Candidate Information");
-// const contentContainer = document.querySelector("#content-container");
 
-// collectionRef.get().then((querySnapshot) => {
-//   querySnapshot.forEach((doc) => {
-//     const docData = doc.data();
-//     const docId = doc.id;
-//     const cardTitle = docData.Name;
-//     const cardSubtitle = `Candidate ID: ${docId}`;
-//     const cardEmail = `Email: ${docData.Email}`;
-//     const cardPhone = `Phone Number: ${docData.PhoneNumber}`;
-//     const cardGradDate = `Predicted Graduation Date: ${docData.PredictedGraduationDate}`;
-//     const cardLocation = `Preferred Location: ${docData.PreferredLocation}`;
-//     const cardTimeAvailable = `Time Available: ${docData.TimeAvailable}`;
-//     const cardUnitPreference = `Unit Preference: ${docData.UnitPreference}`;
-//     const cardWhen = `When: ${docData.When}`;
-    
-//     const card = document.createElement("div");
-//     card.classList.add("column", "is-three-quarters", "has-background-white", "has-text-centered", "r_col");
-//     card.innerHTML = `
-//       <div class="card has-background-light mt-5">
-//         <div class="card-content">
-//           <div class="content">
-//             <div class="media-content">
-//               <p class="title is-4">${cardTitle}</p>
-//               <p class="subtitle is-6">${cardSubtitle}</p>
-//             </div>
-//             <p>${cardEmail}</p>
-//             <p>${cardPhone}</p>
-//             <p>${cardGradDate}</p>
-//             <p>${cardLocation}</p>
-//             <p>${cardTimeAvailable}</p>
-//             <p>${cardUnitPreference}</p>
-//             <p>${cardWhen}</p>
-//           </div>
-//         </div>
-//       </div>
-//     `;
-    
-//     contentContainer.appendChild(card);
-//   });
-// });
-
+// reference the collection
 const candidateInfoRef = db.collection("Candidate Information");
 
 // get all documents in the collection
@@ -395,7 +353,11 @@ candidateInfoRef.get().then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
     // create a new card element
     const card = document.createElement("div");
-    card.classList.add("card");
+    card.classList.add("card", "filter-item"); // add filter class to card element
+    card.setAttribute("data-unit", doc.data().UnitPreference); // add data attribute for unit preference
+    card.setAttribute("data-location", doc.data().PreferredLocation); // add data attribute for location
+    card.setAttribute("data-grad-year", doc.data().PredictedGraduationDate); // add data attribute for graduation year
+    card.setAttribute("data-term", doc.data().When); // add data attribute for term
     // set card content using document data
     const cardContent = `
       <div class="card-content">
@@ -417,11 +379,81 @@ candidateInfoRef.get().then((querySnapshot) => {
   });
 });
 
-// // More testing... Didn't create an output in the log and idk why
+// get all filter dropdowns
+// const filters = document.querySelectorAll(".filter-dropdown");
+// const searchBtn = document.querySelector("#searchbtn");
 
-// db.collection("UnionCandidateTracker").get().then((querySnapshot) => {
-//   querySnapshot.forEach((doc) => {
-//     // doc.data() is never undefined for query doc snapshots
-//     console.log(doc.id, " => ", doc.data());
+// // add event listener to search button
+// searchBtn.addEventListener("click", () => {
+//   // get selected value for each filter
+//   const selectedUnit = document.querySelector("#unit-filter").value;
+//   const selectedLocation = document.querySelector("#location-filter").value;
+//   const selectedGradYear = document.querySelector("#grad-year-filter").value;
+//   const selectedTerm = document.querySelector("#term-filter").value;
+
+//   // get all cards
+//   const cards = document.querySelectorAll(".card");
+
+//   // loop through each card
+//   cards.forEach((card) => {
+//     // get data attributes for each card
+//     const unit = card.getAttribute("data-unit");
+//     const location = card.getAttribute("data-location");
+//     const gradYear = card.getAttribute("data-grad-year");
+//     const term = card.getAttribute("data-term");
+
+//     // check if card matches selected filters
+//     const unitMatch = selectedUnit === "All" || unit === selectedUnit;
+//     const locationMatch = selectedLocation === "All" || location === selectedLocation;
+//     const gradYearMatch = selectedGradYear === "All" || gradYear === selectedGradYear;
+//     const termMatch = selectedTerm === "All" || term === selectedTerm;
+
+//     // show or hide card based on filter selection
+//     if (unitMatch && locationMatch && gradYearMatch && termMatch) {
+//       card.style.display = "block";
+//     } else {
+//       card.style.display = "none";
+//     }
 //   });
 // });
+
+const filterButtons = document.querySelectorAll('.filter-button');
+
+for (let i = 0; i < filterButtons.length; i++) {
+  filterButtons[i].addEventListener('click', function() {
+    const filterValue = this.getAttribute('data-filter');
+    const cards = document.querySelectorAll('.card');
+
+    for (let j = 0; j < cards.length; j++) {
+      const card = cards[j];
+      const attr = card.getAttribute('data-attribute');
+
+      if (filterValue === 'all' || filterValue === attr) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    }
+  });
+}
+
+const searchButton = document.getElementById('search-button');
+if(searchButton) {
+    searchButton.addEventListener('click', function() {
+        const searchTerm = document.getElementById('search-term');
+        const cards = document.querySelectorAll('.card');
+        const regex = new RegExp(searchTerm.value, 'i');
+
+        for (let i = 0; i < cards.length; i++) {
+            const card = cards[i];
+            const title = card.querySelector('.card-title').textContent;
+            const description = card.querySelector('.card-description').textContent;
+
+            if (regex.test(title) || regex.test(description)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        }
+    });
+}
