@@ -137,6 +137,8 @@
 //   }
 // });
 
+// Query the collection and retrieve the documents
+
 // configure_nav_bar(user.email);
 var mybutton = document.querySelector("#mybutton");
 mybutton.addEventListener("click", function () {
