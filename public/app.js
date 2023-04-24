@@ -402,7 +402,6 @@ candidateInfoRef.get().then((querySnapshot) => {
         <div class="content">
           <div class="media-content">
             <p class="title is-4">${doc.data().Name}</p>
-            <p class="subtitle is-6">${doc.id}</p>
           </div>
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
