@@ -328,22 +328,19 @@ auth.onAuthStateChanged((user) => {
 
 // // Testing how to pull our Doc data in Console.Log:
 
-// console.log(db.collection("UnionCandidateTracker").doc("Candidate Information"))
 
-// var docRef = db.collection("UnionCandidateTracker").doc("Candidate Information");
+var docRef = db.collection("Candidate Information").doc("Wv4eEMNzaBXrBwd8sl4R");
 
-// docRef.get().then((doc) => {
-//   if (doc.exists) {
-//     console.log("Document data:", doc.data());
-//   } else {
-//     // doc.data() will be undefined in this case
-//     console.log("No such document!");
-//   }
-// }).catch((error) => {
-//   console.log("Error getting document:", error);
-// });
-
-// console.log(docRef.get('Candidate Information'));
+docRef.get().then((doc) => {
+  if (doc.exists) {
+    console.log("Document data:", doc.data());
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
 
 
 
