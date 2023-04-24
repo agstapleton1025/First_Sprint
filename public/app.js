@@ -1,3 +1,4 @@
+
 // global variables
 
 // let signupbtn = document.querySelector("#signupbtn");
@@ -342,7 +343,80 @@ docRef.get().then((doc) => {
   console.log("Error getting document:", error);
 });
 
+// const db = firebase.firestore();
+// const collectionRef = db.collection("Candidate Information");
+// const contentContainer = document.querySelector("#content-container");
 
+// collectionRef.get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//     const docData = doc.data();
+//     const docId = doc.id;
+//     const cardTitle = docData.Name;
+//     const cardSubtitle = `Candidate ID: ${docId}`;
+//     const cardEmail = `Email: ${docData.Email}`;
+//     const cardPhone = `Phone Number: ${docData.PhoneNumber}`;
+//     const cardGradDate = `Predicted Graduation Date: ${docData.PredictedGraduationDate}`;
+//     const cardLocation = `Preferred Location: ${docData.PreferredLocation}`;
+//     const cardTimeAvailable = `Time Available: ${docData.TimeAvailable}`;
+//     const cardUnitPreference = `Unit Preference: ${docData.UnitPreference}`;
+//     const cardWhen = `When: ${docData.When}`;
+    
+//     const card = document.createElement("div");
+//     card.classList.add("column", "is-three-quarters", "has-background-white", "has-text-centered", "r_col");
+//     card.innerHTML = `
+//       <div class="card has-background-light mt-5">
+//         <div class="card-content">
+//           <div class="content">
+//             <div class="media-content">
+//               <p class="title is-4">${cardTitle}</p>
+//               <p class="subtitle is-6">${cardSubtitle}</p>
+//             </div>
+//             <p>${cardEmail}</p>
+//             <p>${cardPhone}</p>
+//             <p>${cardGradDate}</p>
+//             <p>${cardLocation}</p>
+//             <p>${cardTimeAvailable}</p>
+//             <p>${cardUnitPreference}</p>
+//             <p>${cardWhen}</p>
+//           </div>
+//         </div>
+//       </div>
+//     `;
+    
+//     contentContainer.appendChild(card);
+//   });
+// });
+
+const candidateInfoRef = db.collection("Candidate Information");
+
+// get all documents in the collection
+candidateInfoRef.get().then((querySnapshot) => {
+  // loop through each document in the snapshot
+  querySnapshot.forEach((doc) => {
+    // create a new card element
+    const card = document.createElement("div");
+    card.classList.add("card");
+    // set card content using document data
+    const cardContent = `
+      <div class="card-content">
+        <div class="content">
+          <div class="media-content">
+            <p class="title is-4">${doc.data().Name}</p>
+            <p class="subtitle is-6">${doc.id}</p>
+          </div>
+          <p>Email: ${doc.data().Email}</p>
+          <p>Unit: ${doc.data().UnitPreference}</p>
+          <p>Location: ${doc.data().PreferredLocation}</p>
+          <p>Grad Year: ${doc.data().PredictedGraduationDate}</p>
+          <p>Term: ${doc.data().When}</p>
+          <p>Time Available: ${doc.data().TimeAvailable}</p>
+        </div>
+      </div>`;
+    card.innerHTML = cardContent;
+    // add the card to the page
+    document.querySelector("#card-container").appendChild(card);
+  });
+});
 
 // // More testing... Didn't create an output in the log and idk why
 
