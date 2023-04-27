@@ -1,144 +1,7 @@
-
-// global variables
-
-// let signupbtn = document.querySelector("#signupbtn");
-// let signup_modal = document.querySelector("#signup_modal");
-// let signup_modalbg = document.querySelector("#signup_modalbg");
-
-// let signinbtn = document.querySelector("#signinbtn");
-// let signin_modal = document.querySelector("#signin_modal");
-// let signin_modalbg = document.querySelector("#signin_modalbg");
-
-// // functions
-
-// function configure_nav_bar(user) {
-//   let signedins = document.querySelectorAll(".signedin");
-//   let signedouts = document.querySelectorAll(".signedout");
-
-//   if (user) {
-//     // show all elements with the class signedin AND hide all elements with the class signedout
-
-//     signedins.forEach((link) => {
-//       link.classList.remove("is-hidden");
-//     });
-
-//     signedouts.forEach((link) => {
-//       link.classList.add("is-hidden");
-//     });
-//   }
-//   // user is signed out
-//   else {
-//     // hide all elements with the class signedin AND show all elements with the class signedout
-
-//     signedins.forEach((link) => {
-//       link.classList.add("is-hidden");
-//     });
-
-//     signedouts.forEach((link) => {
-//       link.classList.remove("is-hidden");
-//     });
-//   }
-// }
-
-// function r_e(id) {
-//   return document.querySelector(`#${id}`);
-// }
-
-// // sign-up modal link
-// signupbtn.addEventListener("click", () => {
-//   signup_modal.classList.add("is-active");
-// });
-
-// signup_modalbg.addEventListener("click", () => {
-//   signup_modal.classList.remove("is-active");
-// });
-
-// // sign-in modal link
-// signinbtn.addEventListener("click", () => {
-//   signin_modal.classList.add("is-active");
-// });
-
-// signin_modalbg.addEventListener("click", () => {
-//   signin_modal.classList.remove("is-active");
-// });
-
-// // sign up users
-
-// r_e("signup_form").addEventListener("submit", (e) => {
-//   // prevent the page from auto refresh
-//   e.preventDefault();
-
-//   // get the email and password
-
-//   let email = r_e("email").value;
-//   let password = r_e("password").value;
-
-//   // console.log(email, password);
-
-//   // send email and password to firebase to create the user
-
-//   auth.createUserWithEmailAndPassword(email, password).then((user) => {
-//     // console.log("user created!");
-
-//     // reset the form
-//     r_e("signup_form").reset();
-
-//     // hide the modal
-//     r_e("signup_modal").classList.remove("is-active");
-//   });
-// });
-
-// // sign out users
-
-// r_e("signoutbtn").addEventListener("click", () => {
-//   auth.signOut().then(() => {
-//     // console.log("user signed out!");
-
-//     // hide the user email from the nav bar
-
-//     r_e("currentuser").innerHTML = "";
-//   });
-// });
-
-// // sign in users
-
-// r_e("signin_form").addEventListener("submit", (e) => {
-//   // prevent the page from auth refresh
-//   e.preventDefault();
-
-//   // get the email and password from the form
-
-//   let email = r_e("email_").value;
-//   let password = r_e("password_").value;
-
-//   // send email/password to firebase for authentication
-
-//   auth.signInWithEmailAndPassword(email, password).then((user) => {
-//     // console.log(user.user.email);
-
-//     // display the user email on the nav bar
-
-//     r_e("currentuser").innerHTML = user.user.email;
-
-//     // reset the form
-//     r_e("signin_form").reset();
-
-//     // hide the modal
-//     r_e("signin_modal").classList.remove("is-active");
-//   });
-// });
-
-// // keep track of user authenticaiton status
-
-// auth.onAuthStateChanged((user) => {
-//   if (user) {
-//     alert("user signed in");
-//   } else {
-//     alert("user signed out");
-//   }
-// });
-
-// Query the collection and retrieve the documents
+//id function
+function r_e(id) {
+  return document.querySelector(`#${id}`);
+}
 
 // configure_nav_bar(user.email);
 var mybutton = document.querySelector("#mybutton");
@@ -199,9 +62,9 @@ signin_form.addEventListener("submit", (e) => {
     .then((userCredentials) => {
       console.log(
         userCredentials.user.email +
-        " with the uid " +
-        userCredentials.user.uid +
-        " is logged in!"
+          " with the uid " +
+          userCredentials.user.uid +
+          " is logged in!"
       );
       // close the modal
       signinModal.classList.remove("is-active");
@@ -269,10 +132,7 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-
-
 // Still figuring out the Load_Data Function:
-
 
 // function load_data(coll, loc, field, val) {
 //   let query = "";
@@ -304,11 +164,9 @@ auth.onAuthStateChanged((user) => {
 //         // show Delete Button for Poster
 //         html += `<h1 class="title has-text-centered has-text-light"> ${doc.data().Name} <button id="x_button" class="button is-pulled-right is-link" onclick="del_doc('rescues', '${doc.id}')">X</button> </h1>`; // add the rescue name inside an h1
 
-
 //       } else {
 //         // hide the x button from users
 //         html += `<h1 class="title has-text-centered has-text-light"> ${doc.data().Name} </h1>`; // add just the rescue name inside an h1
-
 
 //       }
 
@@ -320,29 +178,27 @@ auth.onAuthStateChanged((user) => {
 
 //     })
 
-
 //   })
 // }
 // load_data('Candidate Information', 'contentchange')
 
-
-
 // // Testing how to pull our Doc data in Console.Log:
-
 
 var docRef = db.collection("Candidate Information").doc("Wv4eEMNzaBXrBwd8sl4R");
 
-docRef.get().then((doc) => {
-  if (doc.exists) {
-    console.log("Document data:", doc.data());
-  } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-  }
-}).catch((error) => {
-  console.log("Error getting document:", error);
-});
-
+docRef
+  .get()
+  .then((doc) => {
+    if (doc.exists) {
+      console.log("Document data:", doc.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  })
+  .catch((error) => {
+    console.log("Error getting document:", error);
+  });
 
 // reference the collection
 const candidateInfoRef = db.collection("Candidate Information");
@@ -375,7 +231,7 @@ candidateInfoRef.get().then((querySnapshot) => {
       </div>`;
     card.innerHTML = cardContent;
     // add the card to the page
-    document.querySelector("#card-container").appendChild(card);
+    document.querySelector("#card").appendChild(card);
   });
 });
 
@@ -416,44 +272,48 @@ candidateInfoRef.get().then((querySnapshot) => {
 //     }
 //   });
 // });
+function search_cands(field, terms) {
+  // go to the recipes collection and only fetch documents matching the search term
 
-const filterButtons = document.querySelectorAll('.filter-button');
-
-for (let i = 0; i < filterButtons.length; i++) {
-  filterButtons[i].addEventListener('click', function() {
-    const filterValue = this.getAttribute('data-filter');
-    const cards = document.querySelectorAll('.card');
-
-    for (let j = 0; j < cards.length; j++) {
-      const card = cards[j];
-      const attr = card.getAttribute('data-attribute');
-
-      if (filterValue === 'all' || filterValue === attr) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
+  db.collection("Candidate Information")
+    .where(field, "==", terms)
+    .get()
+    .then((data) => {
+      let mydocs = data.docs;
+      // check if no canididates have been added yet
+      if (mydocs.length == 0) {
+        card.innerHTML = `<p class="has-text-centered">No candidates were found!</p>`;
+        return;
       }
-    }
-  });
-}
 
-const searchButton = document.getElementById('search-button');
-if(searchButton) {
-    searchButton.addEventListener('click', function() {
-        const searchTerm = document.getElementById('search-term');
-        const cards = document.querySelectorAll('.card');
-        const regex = new RegExp(searchTerm.value, 'i');
-
-        for (let i = 0; i < cards.length; i++) {
-            const card = cards[i];
-            const title = card.querySelector('.card-title').textContent;
-            const description = card.querySelector('.card-description').textContent;
-
-            if (regex.test(title) || regex.test(description)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        }
+      let cardContent = ``;
+      mydocs.forEach((doc) => {
+        html += `
+        <div class="card-content">
+          <div class="content">
+            <div class="media-content">
+              <p class="title is-4">${doc.data().Name}</p>
+            </div>
+            <p>Email: ${doc.data().Email}</p>
+            <p>Unit: ${doc.data().UnitPreference}</p>
+            <p>Location: ${doc.data().PreferredLocation}</p>
+            <p>Grad Year: ${doc.data().PredictedGraduationDate}</p>
+            <p>Term: ${doc.data().When}</p>
+            <p>Time Available: ${doc.data().TimeAvailable}</p>
+          </div>
+        </div>`;
+        card.innerHTML = cardContent;
+        //add the card to the page
+        document.querySelector("#card-container").appendChild(card);
+      });
     });
 }
+r_e("searchbtn").addEventListener("click", () => {
+  // find the search term entered by the user in the search box
+
+  let terms = document.querySelector("#choice").value;
+
+  //find all recipes with a title matching the variable term
+
+  search_cands("PredictedGraduationDate", terms);
+});
