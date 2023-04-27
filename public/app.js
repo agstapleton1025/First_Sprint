@@ -272,6 +272,8 @@ candidateInfoRef.get().then((querySnapshot) => {
 //     }
 //   });
 // });
+
+
 function search_cands(field, terms) {
   // go to the recipes collection and only fetch documents matching the search term
 
@@ -287,6 +289,7 @@ function search_cands(field, terms) {
       }
 
       let cardContent = ``;
+      let html = "";
       mydocs.forEach((doc) => {
         html += `
         <div class="card-content">
