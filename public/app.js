@@ -184,21 +184,21 @@ auth.onAuthStateChanged((user) => {
 
 // // Testing how to pull our Doc data in Console.Log:
 
-var docRef = db.collection("Candidate Information").doc("Wv4eEMNzaBXrBwd8sl4R");
+// var docRef = db.collection("Candidate Information").doc("tnTHXcqh6PHczDJaHXRf");
 
-docRef
-  .get()
-  .then((doc) => {
-    if (doc.exists) {
-      console.log("Document data:", doc.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  })
-  .catch((error) => {
-    console.log("Error getting document:", error);
-  });
+// docRef
+//   .get()
+//   .then((doc) => {
+//     if (doc.exists) {
+//       console.log("Document data:", doc.data());
+//     } else {
+//       // doc.data() will be undefined in this case
+//       console.log("No such document!");
+//     }
+//   })
+//   .catch((error) => {
+//     console.log("Error getting document:", error);
+//   });
 
 // reference the collection
 const candidateInfoRef = db.collection("Candidate Information");
