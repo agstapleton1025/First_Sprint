@@ -132,6 +132,31 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+
+
+// // save new user to user collection --> still workshopping it
+
+// // reference to users collection
+// const userRef = firebase.firestore().collection('users');
+
+// const user_email = ;
+
+// let new_user = {
+//   username: user_email,
+//   admin:
+// };
+
+// collectionRef.add(new_user)
+//   .then(() => {
+//     console.log('Data added to collection');
+//   })
+//   .catch((error) => {
+//     console.error('Error adding data: ', error);
+//   });
+
+
+
+
 // Still figuring out the Load_Data Function:
 
 // function load_data(coll, loc, field, val) {
