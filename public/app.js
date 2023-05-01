@@ -42,6 +42,14 @@ signup_form.addEventListener("submit", (e) => {
       let signup_error = document.querySelector("#signup_error");
       signup_error.innerHTML = `<p>${error.message}</p>`;
     });
+  let user = {
+    email: email,
+  };
+
+  // store the object in the database
+  db.collection("users")
+    .add(user)
+    .then(() => {});
 });
 
 let signin_form = document.querySelector("#signin_form");
@@ -54,7 +62,6 @@ signin_form.addEventListener("submit", (e) => {
 
   let email = document.querySelector("#email_").value;
   let password = document.querySelector("#password_").value;
-
   auth
     .signInWithEmailAndPassword(email, password)
     .then((userCredentials) => {
@@ -66,7 +73,6 @@ signin_form.addEventListener("submit", (e) => {
       );
       // close the modal
       signinModal.classList.remove("is-active");
-
       // reset
       signin_form.reset();
     })
