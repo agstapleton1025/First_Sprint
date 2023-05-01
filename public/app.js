@@ -35,6 +35,17 @@ signup_form.addEventListener("submit", (e) => {
       console.log("user created successfully");
       mymodal.classList.remove("is-active");
 
+      let user = {
+        email: email
+      };
+
+      // store the object in the database
+      db.collection("users")
+        .add(user)
+        .then(() => {
+          // show an info message to the use
+        });
+
       signup_form.reset();
     })
     .catch((error) => {
@@ -209,21 +220,21 @@ candidateInfoRef.get().then((querySnapshot) => {
   gradYearFilter.addEventListener("change", updateFilters);
   termFilter.forEach((filter) => {
     filter.addEventListener("change", updateFilters);
-  });
 
   // update the filters and display the matching results
   function updateFilters() {
     // get the selected filter values
-    const selectedUnitFilters = Array.from(
-      unitFilter
-    ).filter((filter) => filter.checked).map((filter) => filter.value);
-    const selectedLocationFilters = Array.from(
-      locationFilter
-    ).filter((filter) => filter.checked).map((filter) => filter.value);
+    const selectedUnitFilters = Array.from(unitFilter)
+      .filter((filter) => filter.checked)
+      .map((filter) => filter.value);
+    const selectedLocationFilters = Array.from(locationFilter)
+      .filter((filter) => filter.checked)
+      .map((filter) => filter.value);
     const selectedGradYear = gradYearFilter.value;
-    const selectedTermFilter = Array.from(termFilter).find((filter) => filter.checked);
-const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
-
+    const selectedTermFilter = Array.from(termFilter).find(
+      (filter) => filter.checked
+    );
+    const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
 
     // filter the cards based on the selected filters
     const cards = Array.from(document.querySelectorAll(".card"));
@@ -255,6 +266,5 @@ const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
         card.style.display = "none"; // hide the card if it doesn't match the filters
       }
     });
-}
-});
+
 
