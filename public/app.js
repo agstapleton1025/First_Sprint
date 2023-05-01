@@ -200,6 +200,131 @@ auth.onAuthStateChanged((user) => {
 //     console.log("Error getting document:", error);
 //   });
 
+// // reference the collection
+// const candidateInfoRef = db.collection("Candidate Information");
+
+// // get all documents in the collection
+// candidateInfoRef.get().then((querySnapshot) => {
+//   // loop through each document in the snapshot
+//   querySnapshot.forEach((doc) => {
+//     // create a new card element
+//     const card = document.createElement("div");
+//     card.classList.add("card", "filter-item"); // add filter class to card element
+//     card.setAttribute("data-unit", doc.data().UnitPreference); // add data attribute for unit preference
+//     card.setAttribute("data-location", doc.data().PreferredLocation); // add data attribute for location
+//     card.setAttribute("data-grad-year", doc.data().PredictedGraduationDate); // add data attribute for graduation year
+//     card.setAttribute("data-term", doc.data().When); // add data attribute for term
+//     // set card content using document data
+//     const cardContent = `
+//       <div class="card-content">
+//         <div class="content">
+//           <div class="media-content">
+//             <p class="title is-4">${doc.data().Name}</p>
+//           </div>
+//           <p>Email: ${doc.data().Email}</p>
+//           <p>Unit: ${doc.data().UnitPreference}</p>
+//           <p>Location: ${doc.data().PreferredLocation}</p>
+//           <p>Grad Year: ${doc.data().PredictedGraduationDate}</p>
+//           <p>Term: ${doc.data().When}</p>
+//           <p>Time Available: ${doc.data().TimeAvailable}</p>
+//         </div>
+//       </div>`;
+//     card.innerHTML = cardContent;
+//     // add the card to the page
+//     document.querySelector("#card").appendChild(card);
+//   });
+// });
+
+
+// function search_cands(field, terms) {
+//   // go to the recipes collection and only fetch documents matching the search term
+
+//   db.collection("Candidate Information")
+//     .where(field, "==", terms)
+//     .get()
+//     .then((data) => {
+//       let mydocs = data.docs;
+//       // check if no canididates have been added yet
+//       if (mydocs.length == 0) {
+//         card.innerHTML = `<p class="has-text-centered">No candidates were found!</p>`;
+//         return;
+//       }
+//       else {
+//         let cardContent = ``;
+//         let html = "";
+//         mydocs.forEach((doc) => {
+//           html += `
+//           <div class="card-content">
+//             <div class="content">
+//               <div class="media-content">
+//                 <p class="title is-4">${doc.data().Name}</p>
+//               </div>
+//               <p>Email: ${doc.data().Email}</p>
+//               <p>Unit: ${doc.data().UnitPreference}</p>
+//               <p>Location: ${doc.data().PreferredLocation}</p>
+//               <p>Grad Year: ${doc.data().PredictedGraduationDate}</p>
+//               <p>Term: ${doc.data().When}</p>
+//               <p>Time Available: ${doc.data().TimeAvailable}</p>
+//             </div>
+//           </div>`;
+//           card.innerHTML = cardContent;
+//           //add the card to the page
+//           document.querySelector("#card-container").appendChild(card);
+          
+//         });
+//       }  
+//     });
+// }
+// r_e("searchbtn").addEventListener("click", () => {
+//   // find the search term entered by the user in the search box
+
+//   let terms = document.querySelector("#choice").value;
+
+//   //find all recipes with a title matching the variable term
+
+//   search_cands("PredictedGraduationDate", terms);
+// });
+
+
+// // Get a reference to the profiles collection
+// const profilesRef = firebase.firestore().collection('profiles');
+
+// // Get a reference to the filter elements
+// const unitFilter = document.getElementsByName('unit');
+// const locationFilter = document.getElementsByName('location');
+// const gradYearFilter = document.getElementById('choice');
+// const termFilter = document.getElementsByName('term');
+
+// // Build the query based on the selected filters
+// let query = profilesRef;
+// const unitFilters = [];
+// for (let i = 0; i < unitFilter.length; i++) {
+//   if (unitFilter[i].checked) {
+//     unitFilters.push(unitFilter[i].value);
+//   }
+// }
+// if (unitFilters.length > 0) {
+//   query = query.where('UnitPreference', 'array-contains-any', unitFilters);
+// }
+// const locationFilters = [];
+// for (let i = 0; i < locationFilter.length; i++) {
+//   if (locationFilter[i].checked) {
+//     locationFilters.push(locationFilter[i].value);
+//   }
+// }
+// if (locationFilters.length > 0) {
+//   query = query.where('PreferredLocation', 'array-contains-any', locationFilters);
+// }
+// const gradYear = gradYearFilter.value;
+// if (gradYear !== 'All') {
+//   query = query.where('PredictedGraduationDate', '==', gradYear);
+// }
+// const term = termFilter[0].value;
+// if (term !== 'All') {
+//   query = query.where('When', '==', term);
+// }
+
+
 // reference the collection
 const candidateInfoRef = db.collection("Candidate Information");
 
@@ -233,90 +358,64 @@ candidateInfoRef.get().then((querySnapshot) => {
     // add the card to the page
     document.querySelector("#card").appendChild(card);
   });
-});
 
-// get all filter dropdowns
-// const filters = document.querySelectorAll(".filter-dropdown");
-// const searchBtn = document.querySelector("#searchbtn");
+  // reference the filter elements
+  const unitFilter = document.getElementsByName("unit");
+  const locationFilter = document.getElementsByName("location");
+  const gradYearFilter = document.getElementById("choice");
+  const termFilter = document.getElementsByName("term");
 
-// // add event listener to search button
-// searchBtn.addEventListener("click", () => {
-//   // get selected value for each filter
-//   const selectedUnit = document.querySelector("#unit-filter").value;
-//   const selectedLocation = document.querySelector("#location-filter").value;
-//   const selectedGradYear = document.querySelector("#grad-year-filter").value;
-//   const selectedTerm = document.querySelector("#term-filter").value;
+  // add event listeners to the filter elements
+  unitFilter.forEach((filter) => {
+    filter.addEventListener("change", updateFilters);
+  });
+  locationFilter.forEach((filter) => {
+    filter.addEventListener("change", updateFilters);
+  });
+  gradYearFilter.addEventListener("change", updateFilters);
+  termFilter.forEach((filter) => {
+    filter.addEventListener("change", updateFilters);
+  });
 
-//   // get all cards
-//   const cards = document.querySelectorAll(".card");
-
-//   // loop through each card
-//   cards.forEach((card) => {
-//     // get data attributes for each card
-//     const unit = card.getAttribute("data-unit");
-//     const location = card.getAttribute("data-location");
-//     const gradYear = card.getAttribute("data-grad-year");
-//     const term = card.getAttribute("data-term");
-
-//     // check if card matches selected filters
-//     const unitMatch = selectedUnit === "All" || unit === selectedUnit;
-//     const locationMatch = selectedLocation === "All" || location === selectedLocation;
-//     const gradYearMatch = selectedGradYear === "All" || gradYear === selectedGradYear;
-//     const termMatch = selectedTerm === "All" || term === selectedTerm;
-
-//     // show or hide card based on filter selection
-//     if (unitMatch && locationMatch && gradYearMatch && termMatch) {
-//       card.style.display = "block";
-//     } else {
-//       card.style.display = "none";
-//     }
-//   });
-// });
+  // update the filters and display the matching results
+  function updateFilters() {
+    // get the selected filter values
+    const selectedUnitFilters = Array.from(
+      unitFilter
+    ).filter((filter) => filter.checked).map((filter) => filter.value);
+    const selectedLocationFilters = Array.from(
+      locationFilter
+    ).filter((filter) => filter.checked).map((filter) => filter.value);
+    const selectedGradYear = gradYearFilter.value;
+    const selectedTermFilter = Array.from(termFilter).find((filter) => filter.checked);
+const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
 
 
-function search_cands(field, terms) {
-  // go to the recipes collection and only fetch documents matching the search term
-
-  db.collection("Candidate Information")
-    .where(field, "==", terms)
-    .get()
-    .then((data) => {
-      let mydocs = data.docs;
-      // check if no canididates have been added yet
-      if (mydocs.length == 0) {
-        card.innerHTML = `<p class="has-text-centered">No candidates were found!</p>`;
-        return;
-      }
-
-      let cardContent = ``;
-      let html = "";
-      mydocs.forEach((doc) => {
-        html += `
-        <div class="card-content">
-          <div class="content">
-            <div class="media-content">
-              <p class="title is-4">${doc.data().Name}</p>
-            </div>
-            <p>Email: ${doc.data().Email}</p>
-            <p>Unit: ${doc.data().UnitPreference}</p>
-            <p>Location: ${doc.data().PreferredLocation}</p>
-            <p>Grad Year: ${doc.data().PredictedGraduationDate}</p>
-            <p>Term: ${doc.data().When}</p>
-            <p>Time Available: ${doc.data().TimeAvailable}</p>
-          </div>
-        </div>`;
-        card.innerHTML = cardContent;
-        //add the card to the page
-        document.querySelector("#card-container").appendChild(card);
-      });
-    });
+    // filter the cards based on the selected filters
+    const cards = Array.from(document.querySelectorAll(".card"));
+    cards.forEach((card) => {
+      const unitMatch =
+        selectedUnitFilters.length === 0 ||
+        selectedUnitFilters.some((filter) =>
+          card.dataset.unit.includes(filter)
+        );
+      const locationMatch =
+        selectedLocationFilters.length === 0 ||
+        selectedLocationFilters.some((filter) =>
+          card.dataset.location.includes(filter)
+        );
+      const gradYearMatch =
+        selectedGradYear === "All" ||
+        card.dataset.gradYear === selectedGradYear;
+      const termMatch =
+        selectedTerm === "All" || 
+        card.dataset.term === selectedTerm;
+// check if the card matches all the selected filters
+if (unitMatch && locationMatch && gradYearMatch && termMatch) {
+  card.style.display = "block"; // display the card if it matches the filters
+} else {
+  card.style.display = "none"; // hide the card if it doesn't match the filters
 }
-r_e("searchbtn").addEventListener("click", () => {
-  // find the search term entered by the user in the search box
-
-  let terms = document.querySelector("#choice").value;
-
-  //find all recipes with a title matching the variable term
-
-  search_cands("PredictedGraduationDate", terms);
+});
+}
 });
