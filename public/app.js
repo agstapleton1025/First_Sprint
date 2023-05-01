@@ -21,8 +21,6 @@ signinModalBg.addEventListener("click", () => {
   signinModal.classList.remove("is-active");
 });
 
-// let postBtn = document.querySelector("#submit");
-// let content = document.querySelector('#content');
 let signup_form = document.querySelector("#signup_form");
 
 signup_form.addEventListener("submit", (e) => {
@@ -84,6 +82,7 @@ signin_form.addEventListener("submit", (e) => {
 
 let loggedoutlinks = document.querySelectorAll(".loggedout");
 let loggedinlinks = document.querySelectorAll(".loggedin");
+let contentCards = document.querySelectorAll(".content-card");
 
 function configureNav(user) {
   if (user) {
@@ -99,6 +98,10 @@ function configureNav(user) {
     loggedoutlinks.forEach((link) => {
       link.classList.add("is-hidden");
     });
+
+    contentCards.forEach((card) => {
+      card.classList.remove("is-hidden");
+    });
   }
   // no user is passed to the function (user is signed out)
   else {
@@ -111,245 +114,51 @@ function configureNav(user) {
     loggedinlinks.forEach((link) => {
       link.classList.add("is-hidden");
     });
+
+    contentCards.forEach((card) => {
+      card.classList.add("is-hidden");
+    });
   }
 }
 
 let signoutbtn = document.querySelector("#signoutbtn");
 
 signoutbtn.addEventListener("click", () => {
-  auth.signOut().then((msg) => {
+ 
+  auth.signOut().then(() => {
     console.log("user signed out!");
+    hideContentCards(); // call function to hide content cards
   });
 });
+// Lucas Attempt at hiding cards for non-users
+// function to hide content cards
+function hideContentCards() {
+  let contentCards = document.querySelectorAll(".content-card");
+  contentCards.forEach((card) => {
+    card.classList.add("is-hidden");
+  });
+}
 
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user is now signed in!");
     configureNav(user);
+    showContentCards(); // call function to show content cards
   } else {
     console.log("user is now signed out!");
     configureNav();
+    hideContentCards(); // call function to hide content cards
   }
 });
 
-
-
-// // save new user to user collection --> still workshopping it
-
-// // reference to users collection
-// const userRef = firebase.firestore().collection('users');
-
-// const user_email = ;
-
-// let new_user = {
-//   username: user_email,
-//   admin:
-// };
-
-// collectionRef.add(new_user)
-//   .then(() => {
-//     console.log('Data added to collection');
-//   })
-//   .catch((error) => {
-//     console.error('Error adding data: ', error);
-//   });
-
-
-
-
-// Still figuring out the Load_Data Function:
-
-// function load_data(coll, loc, field, val) {
-//   let query = "";
-
-//   if (field && val) {
-//     query = db.collection(coll).where(field, '==', val);
-//   } else {
-//     query = db.collection(coll);
-//   }
-//   query.get().then(res => {
-
-//     let documents = res.docs;
-
-//     // html reference
-//     html = "";
-
-//     // check documents lenth if 0 => no rescues
-//     // if (documents.length == 0) {
-//     //   html += `<p class="has-text-centered is-size-3 " >No rescues posted at this time!<p>`
-//     //   }
-
-//     // loop through the documents array
-//     documents.forEach(doc => {
-//       html += `<div class="box has-background-dark has-text-light has-text-centered" style="border: solid white 2px" > `;
-
-//       // check if current user email matches email stored on the document
-//       if (auth.currentUser.email == doc.data().Email) {
-
-//         // show Delete Button for Poster
-//         html += `<h1 class="title has-text-centered has-text-light"> ${doc.data().Name} <button id="x_button" class="button is-pulled-right is-link" onclick="del_doc('rescues', '${doc.id}')">X</button> </h1>`; // add the rescue name inside an h1
-
-//       } else {
-//         // hide the x button from users
-//         html += `<h1 class="title has-text-centered has-text-light"> ${doc.data().Name} </h1>`; // add just the rescue name inside an h1
-
-//       }
-
-//       html += `<p  >${doc.data().Name}</p>`;
-//       html += `<p>Email: ${doc.data().Email}</p>`;
-//       html += `<p > UnitPreference: ${doc.data().UnitPreference}</p> `;
-//       html += `<p class="has-background-grey-lighter has-text-dark mt-5">  Contact: <a href="mailto:${doc.data().Email}"> ${doc.data().Email} </a>  </p>`
-//       html += `</div>`;
-
-//     })
-
-//   })
-// }
-// load_data('Candidate Information', 'contentchange')
-
-// // Testing how to pull our Doc data in Console.Log:
-
-// var docRef = db.collection("Candidate Information").doc("tnTHXcqh6PHczDJaHXRf");
-
-// docRef
-//   .get()
-//   .then((doc) => {
-//     if (doc.exists) {
-//       console.log("Document data:", doc.data());
-//     } else {
-//       // doc.data() will be undefined in this case
-//       console.log("No such document!");
-//     }
-//   })
-//   .catch((error) => {
-//     console.log("Error getting document:", error);
-//   });
-
-// // reference the collection
-// const candidateInfoRef = db.collection("Candidate Information");
-
-// // get all documents in the collection
-// candidateInfoRef.get().then((querySnapshot) => {
-//   // loop through each document in the snapshot
-//   querySnapshot.forEach((doc) => {
-//     // create a new card element
-//     const card = document.createElement("div");
-//     card.classList.add("card", "filter-item"); // add filter class to card element
-//     card.setAttribute("data-unit", doc.data().UnitPreference); // add data attribute for unit preference
-//     card.setAttribute("data-location", doc.data().PreferredLocation); // add data attribute for location
-//     card.setAttribute("data-grad-year", doc.data().PredictedGraduationDate); // add data attribute for graduation year
-//     card.setAttribute("data-term", doc.data().When); // add data attribute for term
-//     // set card content using document data
-//     const cardContent = `
-//       <div class="card-content">
-//         <div class="content">
-//           <div class="media-content">
-//             <p class="title is-4">${doc.data().Name}</p>
-//           </div>
-//           <p>Email: ${doc.data().Email}</p>
-//           <p>Unit: ${doc.data().UnitPreference}</p>
-//           <p>Location: ${doc.data().PreferredLocation}</p>
-//           <p>Grad Year: ${doc.data().PredictedGraduationDate}</p>
-//           <p>Term: ${doc.data().When}</p>
-//           <p>Time Available: ${doc.data().TimeAvailable}</p>
-//         </div>
-//       </div>`;
-//     card.innerHTML = cardContent;
-//     // add the card to the page
-//     document.querySelector("#card").appendChild(card);
-//   });
-// });
-
-
-// function search_cands(field, terms) {
-//   // go to the recipes collection and only fetch documents matching the search term
-
-//   db.collection("Candidate Information")
-//     .where(field, "==", terms)
-//     .get()
-//     .then((data) => {
-//       let mydocs = data.docs;
-//       // check if no canididates have been added yet
-//       if (mydocs.length == 0) {
-//         card.innerHTML = `<p class="has-text-centered">No candidates were found!</p>`;
-//         return;
-//       }
-//       else {
-//         let cardContent = ``;
-//         let html = "";
-//         mydocs.forEach((doc) => {
-//           html += `
-//           <div class="card-content">
-//             <div class="content">
-//               <div class="media-content">
-//                 <p class="title is-4">${doc.data().Name}</p>
-//               </div>
-//               <p>Email: ${doc.data().Email}</p>
-//               <p>Unit: ${doc.data().UnitPreference}</p>
-//               <p>Location: ${doc.data().PreferredLocation}</p>
-//               <p>Grad Year: ${doc.data().PredictedGraduationDate}</p>
-//               <p>Term: ${doc.data().When}</p>
-//               <p>Time Available: ${doc.data().TimeAvailable}</p>
-//             </div>
-//           </div>`;
-//           card.innerHTML = cardContent;
-//           //add the card to the page
-//           document.querySelector("#card-container").appendChild(card);
-          
-//         });
-//       }  
-//     });
-// }
-// r_e("searchbtn").addEventListener("click", () => {
-//   // find the search term entered by the user in the search box
-
-//   let terms = document.querySelector("#choice").value;
-
-//   //find all recipes with a title matching the variable term
-
-//   search_cands("PredictedGraduationDate", terms);
-// });
-
-
-// // Get a reference to the profiles collection
-// const profilesRef = firebase.firestore().collection('profiles');
-
-// // Get a reference to the filter elements
-// const unitFilter = document.getElementsByName('unit');
-// const locationFilter = document.getElementsByName('location');
-// const gradYearFilter = document.getElementById('choice');
-// const termFilter = document.getElementsByName('term');
-
-// // Build the query based on the selected filters
-// let query = profilesRef;
-// const unitFilters = [];
-// for (let i = 0; i < unitFilter.length; i++) {
-//   if (unitFilter[i].checked) {
-//     unitFilters.push(unitFilter[i].value);
-//   }
-// }
-// if (unitFilters.length > 0) {
-//   query = query.where('UnitPreference', 'array-contains-any', unitFilters);
-// }
-// const locationFilters = [];
-// for (let i = 0; i < locationFilter.length; i++) {
-//   if (locationFilter[i].checked) {
-//     locationFilters.push(locationFilter[i].value);
-//   }
-// }
-// if (locationFilters.length > 0) {
-//   query = query.where('PreferredLocation', 'array-contains-any', locationFilters);
-// }
-// const gradYear = gradYearFilter.value;
-// if (gradYear !== 'All') {
-//   query = query.where('PredictedGraduationDate', '==', gradYear);
-// }
-// const term = termFilter[0].value;
-// if (term !== 'All') {
-//   query = query.where('When', '==', term);
-// }
-
-
+// function to show content cards
+function showContentCards() {
+  let contentCards = document.querySelectorAll(".content-card");
+  contentCards.forEach((card) => {
+    card.classList.remove("is-hidden");
+  });
+}
+// end of trying to hide content cards
 // reference the collection
 const candidateInfoRef = db.collection("Candidate Information");
 
@@ -418,6 +227,7 @@ const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
 
     // filter the cards based on the selected filters
     const cards = Array.from(document.querySelectorAll(".card"));
+
     cards.forEach((card) => {
       const unitMatch =
         selectedUnitFilters.length === 0 ||
@@ -432,15 +242,19 @@ const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
       const gradYearMatch =
         selectedGradYear === "All" ||
         card.dataset.gradYear === selectedGradYear;
+        console.log(card.dataset.gradYear, selectedGradYear);
       const termMatch =
         selectedTerm === "All" || 
         card.dataset.term === selectedTerm;
-// check if the card matches all the selected filters
-if (unitMatch && locationMatch && gradYearMatch && termMatch) {
-  card.style.display = "block"; // display the card if it matches the filters
-} else {
-  card.style.display = "none"; // hide the card if it doesn't match the filters
+        console.log(card.dataset.term, selectedTerm); 
+    
+      // check if the card matches all the selected filters
+      if (unitMatch && locationMatch && gradYearMatch && termMatch) {
+        card.style.display = "block"; // display the card if it matches the filters
+      } else {
+        card.style.display = "none"; // hide the card if it doesn't match the filters
+      }
+    });
 }
 });
-}
-});
+

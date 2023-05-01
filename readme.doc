@@ -279,8 +279,41 @@ Problems?
 
 Lucas:
 What did you do yesterday? 
-Redid the sign in/signup sign out buttons to hide them when needed
+Worked on card generation
 What are you planning to do today?
-Help with content card creation
+Get content cards to generate from firebase
 Any problems are you facing?
-No
+Connecting firebase data to producing a card
+
+Daily Scrum 2:
+Amanda: 
+What did you do yesterday? 
+
+What are you planning to do today?
+ 
+Any problems are you facing?
+
+
+Alexa: 
+What did you do yesterday? 
+
+What are you planning to do today?
+
+Any problems are you facing?
+
+
+Serena:
+What did you do yesterday?
+
+What are you planning to do today?
+
+Problems?
+
+
+Lucas:
+What did you do yesterday? 
+Worked on generating cards with filters
+What are you planning to do today?
+Get the filtered search to work!
+Any problems are you facing?
+Yes, the cards aren't generating when a search is valid, but it recognizes when a search produces no results
