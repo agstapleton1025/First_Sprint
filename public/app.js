@@ -35,17 +35,6 @@ signup_form.addEventListener("submit", (e) => {
       console.log("user created successfully");
       mymodal.classList.remove("is-active");
 
-      let user = {
-        email: email
-      };
-
-      // store the object in the database
-      db.collection("users")
-        .add(user)
-        .then(() => {
-          // show an info message to the use
-        });
-
       signup_form.reset();
     })
     .catch((error) => {
@@ -135,7 +124,6 @@ function configureNav(user) {
 let signoutbtn = document.querySelector("#signoutbtn");
 
 signoutbtn.addEventListener("click", () => {
- 
   auth.signOut().then(() => {
     console.log("user signed out!");
     hideContentCards(); // call function to hide content cards
@@ -189,7 +177,9 @@ candidateInfoRef.get().then((querySnapshot) => {
       <div class="card-content">
         <div class="content">
           <div class="media-content">
-            <p class="title is-4">${doc.data().Name} <button id="x_button"  class ="is-link" ">X</button></p></p> 
+            <p class="title is-4">${
+              doc.data().Name
+            } <button id="x_button"  class ="is-link" ">X</button></p></p>
           </div>
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
@@ -220,6 +210,7 @@ candidateInfoRef.get().then((querySnapshot) => {
   gradYearFilter.addEventListener("change", updateFilters);
   termFilter.forEach((filter) => {
     filter.addEventListener("change", updateFilters);
+  });
 
   // update the filters and display the matching results
   function updateFilters() {
@@ -253,12 +244,11 @@ candidateInfoRef.get().then((querySnapshot) => {
       const gradYearMatch =
         selectedGradYear === "All" ||
         card.dataset.gradYear === selectedGradYear;
-        console.log(card.dataset.gradYear, selectedGradYear);
+      console.log(card.dataset.gradYear, selectedGradYear);
       const termMatch =
-        selectedTerm === "All" || 
-        card.dataset.term === selectedTerm;
-        console.log(card.dataset.term, selectedTerm); 
-    
+        selectedTerm === "All" || card.dataset.term === selectedTerm;
+      console.log(card.dataset.term, selectedTerm);
+
       // check if the card matches all the selected filters
       if (unitMatch && locationMatch && gradYearMatch && termMatch) {
         card.style.display = "block"; // display the card if it matches the filters
@@ -266,5 +256,5 @@ candidateInfoRef.get().then((querySnapshot) => {
         card.style.display = "none"; // hide the card if it doesn't match the filters
       }
     });
-
-
+  }
+});
