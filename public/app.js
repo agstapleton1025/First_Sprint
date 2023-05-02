@@ -44,6 +44,7 @@ signup_form.addEventListener("submit", (e) => {
     });
   let user = {
     email: email,
+    admin: false,
   };
 
   // store the object in the database
@@ -67,9 +68,9 @@ signin_form.addEventListener("submit", (e) => {
     .then((userCredentials) => {
       console.log(
         userCredentials.user.email +
-        " with the uid " +
-        userCredentials.user.uid +
-        " is logged in!"
+          " with the uid " +
+          userCredentials.user.uid +
+          " is logged in!"
       );
       // close the modal
       signinModal.classList.remove("is-active");
@@ -191,24 +192,21 @@ function deleteCard(card) {
     });
 }
 
-
-
 let isAdmin = false;
 
 console.log("++");
 // console.log(auth.currentUser.email);
 
 setTimeout(() => {
-  db.collection('users').where("email", "==", auth.currentUser.email).get().then((mydata) => {
-
-    temp(mydata.docs[0].data().admin)
-
-  })
-}, 500)
-
+  db.collection("users")
+    .where("email", "==", auth.currentUser.email)
+    .get()
+    .then((mydata) => {
+      temp(mydata.docs[0].data().admin);
+    });
+}, 500);
 
 function temp(check) {
-
   // alert(check);
 
   // get all documents in the collection
@@ -227,12 +225,10 @@ function temp(check) {
       <div class="card-content">
         <div class="content">
           <div class="media-content">
-          <p class="title is-4">${
-            doc.data().Name
-          }`
+          <p class="title is-4">${doc.data().Name}`;
 
       if (check == true) {
-        cardContent += `<button class="edit-card is-link ">Edit</button> <button class="delete-card is-link" style="background: LightCoral" ">X</button></p>`
+        cardContent += `<button class="edit-card is-link ">Edit</button> <button class="delete-card is-link" style="background: LightCoral" ">X</button></p>`;
       }
 
       cardContent += `
@@ -290,7 +286,9 @@ function temp(check) {
       const selectedTermFilter = Array.from(termFilter).find(
         (filter) => filter.checked
       );
-      const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
+      const selectedTerm = selectedTermFilter
+        ? selectedTermFilter.value
+        : "All";
 
       // filter the cards based on the selected filters
       const cards = Array.from(document.querySelectorAll(".card"));
@@ -323,7 +321,4 @@ function temp(check) {
       });
     }
   });
-
-
-
 }
