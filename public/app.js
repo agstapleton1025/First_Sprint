@@ -26,7 +26,7 @@ let signup_form = document.querySelector("#signup_form");
 signup_form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let email = document.querySelector("#email_").value;
+  let email = document.querySelector("#email").value;
   let password = document.querySelector("#password").value;
 
   auth
@@ -140,7 +140,6 @@ signoutbtn.addEventListener("click", () => {
     hideContentCards(); // call function to hide content cards
   });
 });
-// Lucas Attempt at hiding cards for non-users
 // function to hide content cards
 function hideContentCards() {
   let contentCards = document.querySelectorAll(".content-card");
