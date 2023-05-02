@@ -68,9 +68,9 @@ signin_form.addEventListener("submit", (e) => {
     .then((userCredentials) => {
       console.log(
         userCredentials.user.email +
-        " with the uid " +
-        userCredentials.user.uid +
-        " is logged in!"
+          " with the uid " +
+          userCredentials.user.uid +
+          " is logged in!"
       );
       // close the modal
       signinModal.classList.remove("is-active");
@@ -231,11 +231,11 @@ function temp(check) {
       if (check == true) {
         cardContent += `<p> <button id="x-button" class="delete-card button is-danger is-pulled-right is-link" >X</button></p><br>`;
       }
-      // <button class="edit-card button is-danger is-pulled-right is-link ">Edit</button> 
+      // <button class="edit-card button is-danger is-pulled-right is-link ">Edit</button>
 
       cardContent += `
           </div>
-          <p class=title is-4">${doc.data().Name}</p>
+        
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
           <p>Location: ${doc.data().PreferredLocation}</p>
@@ -290,9 +290,9 @@ function temp(check) {
       const selectedTermFilter = Array.from(termFilter).find(
         (filter) => filter.checked
       );
-      const selectedTerm = selectedTermFilter ?
-        selectedTermFilter.value :
-        "All";
+      const selectedTerm = selectedTermFilter
+        ? selectedTermFilter.value
+        : "All";
 
       // filter the cards based on the selected filters
       const cards = Array.from(document.querySelectorAll(".card"));
