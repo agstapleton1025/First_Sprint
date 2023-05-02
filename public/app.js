@@ -131,8 +131,8 @@ let signoutbtn = document.querySelector("#signoutbtn");
 
 signoutbtn.addEventListener("click", () => {
   auth.signOut().then(() => {
-    console.log("user signed out!");
-    hideContentCards(); // call function to hide content cards
+    //console.log("user signed out!");
+    // hideContentCards(); // call function to hide content cards
   });
 });
 // Lucas Attempt at hiding cards for non-users
@@ -146,11 +146,11 @@ function hideContentCards() {
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    console.log("user is now signed in!");
+    //     console.log("user is now signed in!");
     configureNav(user);
     showContentCards(); // call function to show content cards
   } else {
-    console.log("user is now signed out!");
+    //     console.log("user is now signed out!");
     configureNav();
     hideContentCards(); // call function to hide content cards
   }
@@ -158,28 +158,33 @@ auth.onAuthStateChanged((user) => {
 
 // function to show content cards
 function showContentCards() {
-  let contentCards = document.querySelectorAll(".content-card");
-  contentCards.forEach((card) => {
-    card.classList.remove("is-hidden");
-  });
-}
-// end of trying to hide content cards
-// reference the collection
-const candidateInfoRef = db.collection("Candidate Information");
+  if (email) {
+    console.log("hello");
+    r_e("l_col").classList.remove("is-hidden");
+    r_e("r_col").classList.remove("is-hidden");
 
-// get all documents in the collection
-candidateInfoRef.get().then((querySnapshot) => {
-  // loop through each document in the snapshot
-  querySnapshot.forEach((doc) => {
-    // create a new card element
-    const card = document.createElement("div");
-    card.classList.add("card", "filter-item"); // add filter class to card element
-    card.setAttribute("data-unit", doc.data().UnitPreference); // add data attribute for unit preference
-    card.setAttribute("data-location", doc.data().PreferredLocation); // add data attribute for location
-    card.setAttribute("data-grad-year", doc.data().PredictedGraduationDate); // add data attribute for graduation year
-    card.setAttribute("data-term", doc.data().When); // add data attribute for term
-    // set card content using document data
-    const cardContent = `
+    let contentCards = document.querySelectorAll(".content-card");
+    contentCards.forEach((card) => {
+      //card.classList.remove("is-hidden");
+    });
+
+    // end of trying to hide content cards
+    // reference the collection
+    const candidateInfoRef = db.collection("Candidate Information");
+
+    // get all documents in the collection
+    candidateInfoRef.get().then((querySnapshot) => {
+      // loop through each document in the snapshot
+      querySnapshot.forEach((doc) => {
+        // create a new card element
+        const card = document.createElement("div");
+        card.classList.add("card", "filter-item"); // add filter class to card element
+        card.setAttribute("data-unit", doc.data().UnitPreference); // add data attribute for unit preference
+        card.setAttribute("data-location", doc.data().PreferredLocation); // add data attribute for location
+        card.setAttribute("data-grad-year", doc.data().PredictedGraduationDate); // add data attribute for graduation year
+        card.setAttribute("data-term", doc.data().When); // add data attribute for term
+        // set card content using document data
+        const cardContent = `
       <div class="card-content">
         <div class="content">
           <div class="media-content">
@@ -195,72 +200,80 @@ candidateInfoRef.get().then((querySnapshot) => {
           <p>Time Available: ${doc.data().TimeAvailable}</p>
         </div>
       </div>`;
-    card.innerHTML = cardContent;
-    // add the card to the page
-    document.querySelector("#card").appendChild(card);
-  });
-
-  // reference the filter elements
-  const unitFilter = document.getElementsByName("unit");
-  const locationFilter = document.getElementsByName("location");
-  const gradYearFilter = document.getElementById("choice");
-  const termFilter = document.getElementsByName("term");
-
-  // add event listeners to the filter elements
-  unitFilter.forEach((filter) => {
-    filter.addEventListener("change", updateFilters);
-  });
-  locationFilter.forEach((filter) => {
-    filter.addEventListener("change", updateFilters);
-  });
-  gradYearFilter.addEventListener("change", updateFilters);
-  termFilter.forEach((filter) => {
-    filter.addEventListener("change", updateFilters);
-  });
-
-  // update the filters and display the matching results
-  function updateFilters() {
-    // get the selected filter values
-    const selectedUnitFilters = Array.from(unitFilter)
-      .filter((filter) => filter.checked)
-      .map((filter) => filter.value);
-    const selectedLocationFilters = Array.from(locationFilter)
-      .filter((filter) => filter.checked)
-      .map((filter) => filter.value);
-    const selectedGradYear = gradYearFilter.value;
-    const selectedTermFilter = Array.from(termFilter).find(
-      (filter) => filter.checked
-    );
-    const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
-
-    // filter the cards based on the selected filters
-    const cards = Array.from(document.querySelectorAll(".card"));
-
-    cards.forEach((card) => {
-      const unitMatch =
-        selectedUnitFilters.length === 0 ||
-        selectedUnitFilters.some((filter) =>
-          card.dataset.unit.includes(filter)
-        );
-      const locationMatch =
-        selectedLocationFilters.length === 0 ||
-        selectedLocationFilters.some((filter) =>
-          card.dataset.location.includes(filter)
-        );
-      const gradYearMatch =
-        selectedGradYear === "All" ||
-        card.dataset.gradYear === selectedGradYear;
-      console.log(card.dataset.gradYear, selectedGradYear);
-      const termMatch =
-        selectedTerm === "All" || card.dataset.term === selectedTerm;
-      console.log(card.dataset.term, selectedTerm);
-
-      // check if the card matches all the selected filters
-      if (unitMatch && locationMatch && gradYearMatch && termMatch) {
-        card.style.display = "block"; // display the card if it matches the filters
-      } else {
-        card.style.display = "none"; // hide the card if it doesn't match the filters
-      }
+        card.innerHTML = cardContent;
+        // add the card to the page
+        document.querySelector("#card").appendChild(card);
+      });
     });
+  } else {
+    r_e("r_col").innerHTML = ``;
+    card.innerHTML = `<p class="has-text-black has-text-centered has-text-weight-bold">You need to be signed-in to view the content.</p>`;
+
+    // hide the left column
+    r_e("l_col").classList.add("is-hidden");
+
+    // hide the right column
+    r_e("r_col").classList.add("is-hidden");
   }
+}
+
+// reference the filter elements
+const unitFilter = document.getElementsByName("unit");
+const locationFilter = document.getElementsByName("location");
+const gradYearFilter = document.getElementById("choice");
+const termFilter = document.getElementsByName("term");
+
+// add event listeners to the filter elements
+unitFilter.forEach((filter) => {
+  filter.addEventListener("change", updateFilters);
 });
+locationFilter.forEach((filter) => {
+  filter.addEventListener("change", updateFilters);
+});
+gradYearFilter.addEventListener("change", updateFilters);
+termFilter.forEach((filter) => {
+  filter.addEventListener("change", updateFilters);
+});
+
+// update the filters and display the matching results
+function updateFilters() {
+  // get the selected filter values
+  const selectedUnitFilters = Array.from(unitFilter)
+    .filter((filter) => filter.checked)
+    .map((filter) => filter.value);
+  const selectedLocationFilters = Array.from(locationFilter)
+    .filter((filter) => filter.checked)
+    .map((filter) => filter.value);
+  const selectedGradYear = gradYearFilter.value;
+  const selectedTermFilter = Array.from(termFilter).find(
+    (filter) => filter.checked
+  );
+  const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
+
+  // filter the cards based on the selected filters
+  const cards = Array.from(document.querySelectorAll(".card"));
+
+  cards.forEach((card) => {
+    const unitMatch =
+      selectedUnitFilters.length === 0 ||
+      selectedUnitFilters.some((filter) => card.dataset.unit.includes(filter));
+    const locationMatch =
+      selectedLocationFilters.length === 0 ||
+      selectedLocationFilters.some((filter) =>
+        card.dataset.location.includes(filter)
+      );
+    const gradYearMatch =
+      selectedGradYear === "All" || card.dataset.gradYear === selectedGradYear;
+    console.log(card.dataset.gradYear, selectedGradYear);
+    const termMatch =
+      selectedTerm === "All" || card.dataset.term === selectedTerm;
+    console.log(card.dataset.term, selectedTerm);
+
+    // check if the card matches all the selected filters
+    if (unitMatch && locationMatch && gradYearMatch && termMatch) {
+      card.style.display = "block"; // display the card if it matches the filters
+    } else {
+      card.style.display = "none"; // hide the card if it doesn't match the filters
+    }
+  });
+}
