@@ -26,7 +26,7 @@ let signup_form = document.querySelector("#signup_form");
 signup_form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let email = document.querySelector("#email").value;
+  let email = document.querySelector("#email_").value;
   let password = document.querySelector("#password").value;
 
   auth
@@ -84,12 +84,21 @@ let loggedoutlinks = document.querySelectorAll(".loggedout");
 let loggedinlinks = document.querySelectorAll(".loggedin");
 let contentCards = document.querySelectorAll(".content-card");
 
+function configure_content(user) {
+  if (user) {
+    r_e('l_col').classList.remove('is-hidden');
+    r_e('card').classList.remove('is-hidden');
+  } else {
+    r_e('l_col').classList.add('is-hidden');
+    r_e('card').classList.add('is-hidden');
+  }
+}
+
 function configureNav(user) {
   if (user) {
     document.querySelector(
       "#welcome_user"
     ).innerHTML = `${auth.currentUser.email}`;
-    // console.log(loggedoutlinks);
 
     loggedinlinks.forEach((link) => {
       link.classList.remove("is-hidden");
@@ -99,25 +108,19 @@ function configureNav(user) {
       link.classList.add("is-hidden");
     });
 
-    contentCards.forEach((card) => {
-      card.classList.remove("is-hidden");
-    });
-  }
-  // no user is passed to the function (user is signed out)
-  else {
+    configure_content(user); // call function to show content cards
+  } else {
     document.querySelector("#welcome_user").innerHTML = "";
-    // show all the loggedout links
+
     loggedoutlinks.forEach((link) => {
       link.classList.remove("is-hidden");
     });
-    // hide all the loggedin links
+
     loggedinlinks.forEach((link) => {
       link.classList.add("is-hidden");
     });
 
-    contentCards.forEach((card) => {
-      card.classList.add("is-hidden");
-    });
+    configure_content(user); // call function to hide content cards
   }
 }
 
@@ -159,6 +162,7 @@ function showContentCards() {
   });
 }
 // end of trying to hide content cards
+
 // reference the collection
 const candidateInfoRef = db.collection("Candidate Information");
 
