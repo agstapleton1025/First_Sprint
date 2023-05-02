@@ -229,11 +229,13 @@ function temp(check) {
           <p class="title is-4">${doc.data().Name}`;
 
       if (check == true) {
-        cardContent += `<button class="edit-card is-link ">Edit</button> <button class="delete-card is-link" style="background: LightCoral">X</button></p>`;
+        cardContent += `<p> <button id="x-button" class="delete-card button is-danger is-pulled-right is-link" >X</button></p><br>`;
       }
+      // <button class="edit-card button is-danger is-pulled-right is-link ">Edit</button> 
 
       cardContent += `
           </div>
+          <p class=title is-4">${doc.data().Name}</p>
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
           <p>Location: ${doc.data().PreferredLocation}</p>
