@@ -220,6 +220,7 @@ function temp(check) {
       card.setAttribute("data-location", doc.data().PreferredLocation); // add data attribute for location
       card.setAttribute("data-grad-year", doc.data().PredictedGraduationDate); // add data attribute for graduation year
       card.setAttribute("data-term", doc.data().When); // add data attribute for term
+      card.setAttribute("id", doc.id); // add data attribute for term
       // set card content using document data
       let cardContent = `
       <div class="card-content">
@@ -228,7 +229,7 @@ function temp(check) {
           <p class="title is-4">${doc.data().Name}`;
 
       if (check == true) {
-        cardContent += `<button class="edit-card is-link ">Edit</button> <button class="delete-card is-link" style="background: LightCoral" ">X</button></p>`;
+        cardContent += `<button class="edit-card is-link ">Edit</button> <button class="delete-card is-link" style="background: LightCoral">X</button></p>`;
       }
 
       cardContent += `
@@ -247,7 +248,8 @@ function temp(check) {
       if (check == true) {
         const deleteButton = card.querySelector(".delete-card");
         deleteButton.addEventListener("click", () => {
-          deleteCard(card);
+          deleteCard(doc.id);
+          // delete.doc.id
           card.parentNode.removeChild(card);
         });
       }
