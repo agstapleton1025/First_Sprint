@@ -191,7 +191,9 @@ candidateInfoRef.get().then((querySnapshot) => {
           <div class="media-content">
             <p class="title is-4">${
               doc.data().Name
-            } <button id="x_button"  class ="is-link" ">X</button></p></p>
+            } <button id="edit_button"  class ="is-link" ">edit</button>
+            <button id="x_button"  class ="is-link has-text-white" style="background: LightCoral" ">X</button>
+            </p></p>
           </div>
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
