@@ -92,11 +92,11 @@ let contentCards = document.querySelectorAll(".content-card");
 
 function configure_content(user) {
   if (user) {
-    r_e('l_col').classList.remove('is-hidden');
-    r_e('card').classList.remove('is-hidden');
+    r_e("l_col").classList.remove("is-hidden");
+    r_e("card").classList.remove("is-hidden");
   } else {
-    r_e('l_col').classList.add('is-hidden');
-    r_e('card').classList.add('is-hidden');
+    r_e("l_col").classList.add("is-hidden");
+    r_e("card").classList.add("is-hidden");
   }
 }
 
