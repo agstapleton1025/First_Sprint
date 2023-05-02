@@ -68,9 +68,9 @@ signin_form.addEventListener("submit", (e) => {
     .then((userCredentials) => {
       console.log(
         userCredentials.user.email +
-          " with the uid " +
-          userCredentials.user.uid +
-          " is logged in!"
+        " with the uid " +
+        userCredentials.user.uid +
+        " is logged in!"
       );
       // close the modal
       signinModal.classList.remove("is-active");
@@ -153,7 +153,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user is now signed in!");
     configureNav(user);
-    showContentCards(); // call function to show content cards
+    // showContentCards(); // call function to show content cards
   } else {
     console.log("user is now signed out!");
     configureNav();
@@ -162,12 +162,12 @@ auth.onAuthStateChanged((user) => {
 });
 
 // function to show content cards
-function showContentCards() {
-  let contentCards = document.querySelectorAll(".content-card");
-  contentCards.forEach((card) => {
-    card.classList.remove("is-hidden");
-  });
-}
+// function showContentCards() {
+//   let contentCards = document.querySelectorAll(".content-card");
+//   contentCards.forEach((card) => {
+//     card.classList.remove("is-hidden");
+//   });
+// }
 // end of trying to hide content cards
 
 // reference the collection
@@ -286,9 +286,9 @@ function temp(check) {
       const selectedTermFilter = Array.from(termFilter).find(
         (filter) => filter.checked
       );
-      const selectedTerm = selectedTermFilter
-        ? selectedTermFilter.value
-        : "All";
+      const selectedTerm = selectedTermFilter ?
+        selectedTermFilter.value :
+        "All";
 
       // filter the cards based on the selected filters
       const cards = Array.from(document.querySelectorAll(".card"));
