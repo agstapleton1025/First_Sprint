@@ -42,6 +42,14 @@ signup_form.addEventListener("submit", (e) => {
       let signup_error = document.querySelector("#signup_error");
       signup_error.innerHTML = `<p>${error.message}</p>`;
     });
+  let user = {
+    email: email,
+  };
+
+  // store the object in the database
+  db.collection("users")
+    .add(user)
+    .then(() => {});
 });
 
 let signin_form = document.querySelector("#signin_form");
@@ -54,7 +62,6 @@ signin_form.addEventListener("submit", (e) => {
 
   let email = document.querySelector("#email_").value;
   let password = document.querySelector("#password_").value;
-
   auth
     .signInWithEmailAndPassword(email, password)
     .then((userCredentials) => {
@@ -66,7 +73,6 @@ signin_form.addEventListener("submit", (e) => {
       );
       // close the modal
       signinModal.classList.remove("is-active");
-
       // reset
       signin_form.reset();
     })
@@ -127,7 +133,6 @@ function configureNav(user) {
 let signoutbtn = document.querySelector("#signoutbtn");
 
 signoutbtn.addEventListener("click", () => {
- 
   auth.signOut().then(() => {
     console.log("user signed out!");
     hideContentCards(); // call function to hide content cards
@@ -182,7 +187,9 @@ candidateInfoRef.get().then((querySnapshot) => {
       <div class="card-content">
         <div class="content">
           <div class="media-content">
-            <p class="title is-4">${doc.data().Name}</p>
+            <p class="title is-4">${
+              doc.data().Name
+            } <button id="x_button"  class ="is-link" ">X</button></p></p>
           </div>
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
@@ -218,16 +225,17 @@ candidateInfoRef.get().then((querySnapshot) => {
   // update the filters and display the matching results
   function updateFilters() {
     // get the selected filter values
-    const selectedUnitFilters = Array.from(
-      unitFilter
-    ).filter((filter) => filter.checked).map((filter) => filter.value);
-    const selectedLocationFilters = Array.from(
-      locationFilter
-    ).filter((filter) => filter.checked).map((filter) => filter.value);
+    const selectedUnitFilters = Array.from(unitFilter)
+      .filter((filter) => filter.checked)
+      .map((filter) => filter.value);
+    const selectedLocationFilters = Array.from(locationFilter)
+      .filter((filter) => filter.checked)
+      .map((filter) => filter.value);
     const selectedGradYear = gradYearFilter.value;
-    const selectedTermFilter = Array.from(termFilter).find((filter) => filter.checked);
-const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
-
+    const selectedTermFilter = Array.from(termFilter).find(
+      (filter) => filter.checked
+    );
+    const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
 
     // filter the cards based on the selected filters
     const cards = Array.from(document.querySelectorAll(".card"));
@@ -246,12 +254,11 @@ const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
       const gradYearMatch =
         selectedGradYear === "All" ||
         card.dataset.gradYear === selectedGradYear;
-        console.log(card.dataset.gradYear, selectedGradYear);
+      console.log(card.dataset.gradYear, selectedGradYear);
       const termMatch =
-        selectedTerm === "All" || 
-        card.dataset.term === selectedTerm;
-        console.log(card.dataset.term, selectedTerm); 
-    
+        selectedTerm === "All" || card.dataset.term === selectedTerm;
+      console.log(card.dataset.term, selectedTerm);
+
       // check if the card matches all the selected filters
       if (unitMatch && locationMatch && gradYearMatch && termMatch) {
         card.style.display = "block"; // display the card if it matches the filters
@@ -259,6 +266,5 @@ const selectedTerm = selectedTermFilter ? selectedTermFilter.value : "All";
         card.style.display = "none"; // hide the card if it doesn't match the filters
       }
     });
-}
+  }
 });
-

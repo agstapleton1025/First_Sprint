@@ -250,70 +250,202 @@ Trello board: https://trello.com/b/AUpfIQHA/sprint-2
 
 Burndown chart: https://drive.google.com/file/d/1kjiYbIRv12Sx3px9QKwWedUq9aA4HIwu/view?usp=share_link
 
+
 Sprint 3
 
-Daily Scrum 1:
-Amanda: 
-What did you do yesterday? 
-
-What are you planning to do today?
  
-Any problems are you facing?
 
+Daily Scrum 1: 4/19/2023
 
-Alexa: 
-What did you do yesterday? 
+Amanda:
+What did you do yesterday?
+Researched user rules
 
 What are you planning to do today?
+Brainstorm for filtering function that is not working
 
 Any problems are you facing?
+No
+
+
+Alexa:
+What did you do yesterday?
+I started working on connecting google forms to firebase
+
+What are you planning to do today?
+Still working on connecting
+
+Any problems are you facing?
+Using zapper is new for us and we are still learning how it runs
 
 
 Serena:
 What did you do yesterday?
+researching how to get google form data into a fb collection
 
 What are you planning to do today?
+more research 
 
 Problems?
-
+finding a free solution to this problem 
 
 Lucas:
-What did you do yesterday? 
-Worked on card generation
+What did you do yesterday?
+Redid the sign in/signup sign out buttons to hide them when needed
+
 What are you planning to do today?
-Get content cards to generate from firebase
+Help with content card creation
+
 Any problems are you facing?
-Connecting firebase data to producing a card
+No
 
-Daily Scrum 2:
-Amanda: 
-What did you do yesterday? 
-
-What are you planning to do today?
  
-Any problems are you facing?
 
+Daily Scrum 2: 4/24/2023
 
-Alexa: 
-What did you do yesterday? 
+Amanda:
+What did you do yesterday?
+Worked on filtering
 
 What are you planning to do today?
+Continued problem solving for filtering
 
 Any problems are you facing?
+No
 
+ 
+Alexa:
+What did you do yesterday?
+Successfully connected the data to our firebase
+
+What are you planning to do today?
+trying to pull the data from firebase to the site
+
+Any problems are you facing?
+he auth of firebase keeps running out In zapper
+
+ 
 
 Serena:
 What did you do yesterday?
-
+got firebase to connect to our forms 
+ 
 What are you planning to do today?
+starting code to get and filter candidate data  
 
 Problems?
+no
 
-
+ 
 Lucas:
-What did you do yesterday? 
-Worked on generating cards with filters
+What did you do yesterday?
+Worked on hiding content when not signed in
+
 What are you planning to do today?
-Get the filtered search to work!
+Wrapped up filtering
+
 Any problems are you facing?
-Yes, the cards aren't generating when a search is valid, but it recognizes when a search produces no results
+No
+
+ 
+
+Daily Scrum 3: 4/25/2023
+
+Amanda:
+What did you do yesterday?
+Filtering content coding
+
+What are you planning to do today?
+Testing
+
+Any problems are you facing?
+No
+
+
+Alexa:
+What did you do yesterday?
+Working on zapier auth
+
+What are you planning to do today?
+Still working on Zapier
+
+Any problems are you facing?
+Troubleshooting with a new app
+
+ 
+
+Serena:
+What did you do yesterday?
+worked on filtering 
+
+What are you planning to do today?
+getting user data into the fb collection so we can distinguish Admin
+
+Problems?
+no 
+ 
+Lucas:
+What did you do yesterday?
+Wrapped up the filtering code and worked through some errors.
+
+What are you planning to do today?
+Look into issues with the ishidden class and see how we can remove content from the page when a user is not signed in.
+
+Any problems are you facing?
+No
+
+ 
+
+Sprint Review
+a. What did you learn from doing our first sprint?
+We learned the importance of being organized in delegating tasks to group members, and how important communication is. This helps us be more efficient and productive.
+
+b. What did go well? Why?
+We were able to work together and collaborate on any issues that we were having. We constantly communicated and updated each other on any changes we made.
+
+c. What didn’t go well? Why not?
+We are still struggling with the function to filter through data and candidate information. Once we have this figured out we will be able to wrap up the code for our site.
+
+d. How can you make things better next time?
+We will ensure that we manage our time effectively and get additional help as needed. Doing this in the past has ensured productivity.
+
+e. Are you satisfied with what you already completed?
+Yes, but we still need to tweak our filtering code and function to get it to work properly.
+
+f.  Which group was invited? What are your observations/notes? Everybody was present?
+
+Other group's review: Group 10
+
+We learned about the updates that they have made to their website. Everyone was present and they told us about how they are considering adding a check out feature, depending on if that will be most efficient for the client.
+
+ 
+
+ 
+
+User Stories:
+
+Student recruiters: As a student recruiter, I would like to be able to filter through candidate cards.
+
+Admin: As an admin I want to be able to edit and delete existing candidate cards on the site.
+
+ 
+
+Tasks:
+
+- Sync forms to firebase
+
+- Create user rules
+
+- Create admin rules
+
+- Complete filtering code
+
+- Change user rules in firebase
+
+ 
+
+Trello board: https://trello.com/b/VfuNnUOV/sprint-3
+
+ 
+
+Burndown chart: https://drive.google.com/file/d/1XgADhCfY038vRbrmoa1ZWxb2JEszAylA/view?usp=sharing
