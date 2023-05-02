@@ -172,7 +172,22 @@ function showContentCards() {
 
 // reference the collection
 const candidateInfoRef = db.collection("Candidate Information");
+function deleteCard(card) {
+  // Get the ID of the document associated with the card
+  // const docId = card.getAttribute("data-id");
+let docId = card
+  // Remove the card element from the page
+  // card.remove();
 
+  // Delete the corresponding document from Firestore
+  db.collection("Candidate Information").doc(docId).delete()
+    .then(() => {
+      console.log("Document successfully deleted");
+    })
+    .catch((error) => {
+      console.error("Error deleting document: ", error);
+    });
+}
 // get all documents in the collection
 candidateInfoRef.get().then((querySnapshot) => {
   // loop through each document in the snapshot
@@ -189,9 +204,7 @@ candidateInfoRef.get().then((querySnapshot) => {
       <div class="card-content">
         <div class="content">
           <div class="media-content">
-            <p class="title is-4">${
-              doc.data().Name
-            } <button id="x_button"  class ="is-link" ">X</button></p></p>
+          <p class="title is-4">${doc.data().Name} <button class="delete-card is-link">X</button></p>
           </div>
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
@@ -203,9 +216,16 @@ candidateInfoRef.get().then((querySnapshot) => {
       </div>`;
     card.innerHTML = cardContent;
     // add the card to the page
+    const deleteButton = card.querySelector(".delete-card");
+    deleteButton.addEventListener("click", () => {
+    deleteCard(card);
+    card.parentNode.removeChild(card);
+  });
     document.querySelector("#card").appendChild(card);
   });
-
+  
+  
+  
   // reference the filter elements
   const unitFilter = document.getElementsByName("unit");
   const locationFilter = document.getElementsByName("location");
