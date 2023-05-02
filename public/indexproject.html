@@ -1,259 +1,208 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UW Union Candidate Tracking System</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
 
-    <script
-      src="https://kit.fontawesome.com/8a80b728dc.js"
-      crossorigin="anonymous"
-    ></script>
-    <style>
-      body {
-        background-color: lightgrey;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UW Union Candidate Tracking System</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-      .checks {
-        margin: auto;
-        margin-left: 8rem;
-      }
-      .icon {
-        color: white;
-      }
-      #card {
-        width: 200px;
-        height: 200 px;
-      }
-    </style>
-  </head>
+  <script src="https://kit.fontawesome.com/8a80b728dc.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background-color: lightgrey;
+    }
 
-  <body>
-    <!--  sign up modal -->
-    <div class="modal" id="signin-modal">
-      <div class="modal-background" id="signin-modalbg"></div>
-      <div class="modal-content p-6 has-background-white is-centered">
-        <h1 class="is-size-3 title">Sign In!</h1>
-        <form id="signin_form">
-          <!-- Email -->
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input type="email" id="email_" />
-            </div>
+    .checks {
+      margin: auto;
+      margin-left: 8rem;
+    }
+
+    .icon {
+      color: white;
+    }
+
+    #card {
+      width: 200px;
+      height: 200 px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--  sign up modal -->
+  <div class="modal" id="signin-modal">
+    <div class="modal-background" id="signin-modalbg"></div>
+    <div class="modal-content p-6 has-background-white is-centered">
+      <h1 class="is-size-3 title">Sign In!</h1>
+      <form id="signin_form">
+        <!-- Email -->
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input type="email" id="email_" />
           </div>
-          <!-- Password -->
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input type="password" id="password_" />
-            </div>
+        </div>
+        <!-- Password -->
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input type="password" id="password_" />
           </div>
-          <!-- submit -->
-          <div class="field">
-            <div class="control">
-              <button class="m-3 button is-link">Submit</button>
-            </div>
+        </div>
+        <!-- submit -->
+        <div class="field">
+          <div class="control">
+            <button class="m-3 button is-link">Submit</button>
           </div>
-          <!-- sign in errors -->
-          <div id="signin_error" class="has-text-danger"></div>
-        </form>
+        </div>
+        <!-- sign in errors -->
+        <div id="signin_error" class="has-text-danger"></div>
+      </form>
+    </div>
+  </div>
+  <div class="modal" id="mymodal">
+    <div class="modal-background" id="modal-background"></div>
+    <div class="modal-content p-6 has-background-white">
+      <h1 class="is-size-3 title">Sign Up!</h1>
+      <form id="signup_form">
+        <!-- Email -->
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input type="email" id="email" />
+          </div>
+        </div>
+        <!-- Password -->
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input type="password" id="password" />
+          </div>
+        </div>
+
+        <!-- submit -->
+        <div class="field">
+          <div class="control">
+            <button class="m-3 button is-link" id="sum_submit">Submit</button>
+          </div>
+        </div>
+
+        <!-- div error -->
+        <div class="error has-text-danger" id="signup_error"></div>
+      </form>
+    </div>
+  </div>
+
+  <!--Navbar-->
+
+  <nav class="navbar has-background-success-dark" role="navigation" aria-label="main navigation">
+    <!-- logo -->
+    <div class="navbar-brand">
+      <img class="navbar-item" src="images/realfinal.png" alt="" width="150" height="150" />
+    </div>
+    <div class="navbar-item ml-4">
+      <!--Title-->
+      <h6 class="title is-size-2 m-5 has-text-white">
+        Union HR Employee Tracking System
+      </h6>
+    </div>
+
+    <div class="navbar-menu is-active">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <button class="signupbtn loggedout button" id="mybutton">
+            Sign Up
+          </button>
+        </div>
+        <div class="navbar-item">
+          <p id="welcome_user"></p>
+        </div>
+        <div class="navbar-item">
+          <button id="signinbtn" class="loggedout button">Sign In</button>
+        </div>
+        <div class="navbar-item">
+          <button id="signoutbtn" class="loggedin button">Sign Out</button>
+        </div>
+        &nbsp;
       </div>
     </div>
-    <div class="modal" id="mymodal">
-      <div class="modal-background" id="modal-background"></div>
-      <div class="modal-content p-6 has-background-white">
-        <h1 class="is-size-3 title">Sign Up!</h1>
-        <form id="signup_form">
-          <!-- Email -->
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input type="email" id="email" />
-            </div>
-          </div>
-          <!-- Password -->
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input type="password" id="password" />
-            </div>
-          </div>
+  </nav>
 
-          <!-- submit -->
-          <div class="field">
-            <div class="control">
-              <button class="m-3 button is-link" id="sum_submit">Submit</button>
-            </div>
-          </div>
+  <!--3 Column Layout-->
 
-          <!-- div error -->
-          <div class="error has-text-danger" id="signup_error"></div>
-        </form>
+  <!--Column 1-->
+
+  <div class="columns mb-auto">
+    <div class="column has-background-lightgrey is-one-quarter checks" id="l_col">
+      <div class="is-centered">
+        <h3 class="is-size-3 has-text-weight-bold mb-2">Preferences</h3>
       </div>
-    </div>
-
-    <!--Navbar-->
-
-    <nav
-      class="navbar has-background-success-dark"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <!-- logo -->
-      <div class="navbar-brand">
-        <img
-          class="navbar-item"
-          src="images/realfinal.png"
-          alt=""
-          width="150"
-          height="150"
-        />
-      </div>
-      <div class="navbar-item ml-4">
-        <!--Title-->
-        <h6 class="title is-size-2 m-5 has-text-white">
-          Union HR Employee Tracking System
-        </h6>
-      </div>
-
-      <div class="navbar-menu is-active">
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <button class="signupbtn loggedout button" id="mybutton">
-              Sign Up
-            </button>
-          </div>
-          <div class="navbar-item">
-            <p id="welcome_user"></p>
-          </div>
-          <div class="navbar-item">
-            <button id="signinbtn" class="loggedout button">Sign In</button>
-          </div>
-          <div class="navbar-item">
-            <button id="signoutbtn" class="loggedin button">Sign Out</button>
-          </div>
-          &nbsp;
+      <br />
+      <h3 class="has-text-weight-bold is-size-5">Unit</h3>
+      <div>
+        <div>
+          <input type="checkbox" name="unit" value="Dining and Hospitality" id="unit-Dining-and-Hospitality" />
+          <label for="unit-Dining-and-Hospitality">Dining and Hospitality</label>
+        </div>
+        <div>
+          <input type="checkbox" name="unit" value="Facilities" id="unit-Facilities" />
+          <label for="unit-Facilities">Facilities</label>
+        </div>
+        <div>
+          <input type="checkbox" name="unit" value="Administration" id="unit-Administration" />
+          <label for="unit-Administration">Administration</label>
+        </div>
+        <div>
+          <input type="checkbox" name="unit" value="Hotel Services" id="unit-Hotel-Services" />
+          <label for="unit-Hotel-Services">Hotel Services</label>
         </div>
       </div>
-    </nav>
-
-    <!--3 Column Layout-->
-
-    <!--Column 1-->
-
-    <div class="columns mb-auto">
-      <div
-        class="column has-background-lightgrey is-one-quarter checks"
-        id="l_col"
-      >
-        <div class="is-centered">
-          <h3 class="is-size-3 has-text-weight-bold mb-2">Preferences</h3>
-        </div>
-        <br />
-        <h3 class="has-text-weight-bold is-size-5">Unit</h3>
+      <br />
+      <h3 class="has-text-weight-bold is-size-5">Location</h3>
+      <div>
         <div>
-          <div>
-            <input
-              type="checkbox"
-              name="unit"
-              value="Dining and Hospitality"
-              id="unit-Dining-and-Hospitality"
-            />
-            <label for="unit-Dining-and-Hospitality"
-              >Dining and Hospitality</label
-            >
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              name="unit"
-              value="Facilities"
-              id="unit-Facilities"
-            />
-            <label for="unit-Facilities">Facilities</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              name="unit"
-              value="Administration"
-              id="unit-Administration"
-            />
-            <label for="unit-Administration">Administration</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              name="unit"
-              value="Hotel Services"
-              id="unit-Hotel-Services"
-            />
-            <label for="unit-Hotel-Services">Hotel Services</label>
-          </div>
+          <input type="checkbox" name="location" value="Memorial Union" id="location-Memorial-Union" />
+          <label for="location-Memorial-Union">Memorial Union</label>
         </div>
-        <br />
-        <h3 class="has-text-weight-bold is-size-5">Location</h3>
         <div>
-          <div>
-            <input
-              type="checkbox"
-              name="location"
-              value="Memorial Union"
-              id="location-Memorial-Union"
-            />
-            <label for="location-Memorial-Union">Memorial Union</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              name="location"
-              value="Union South"
-              id="location-Union-South"
-            />
-            <label for="location-Union-South">Union South</label>
-          </div>
+          <input type="checkbox" name="location" value="Union South" id="location-Union-South" />
+          <label for="location-Union-South">Union South</label>
         </div>
-        <br />
-        <h3 class="has-text-weight-bold is-size-5 pb-2">Grad Year</h3>
-        <div>
-          <div class="select">
-            <select name="gradYear" id="choice">
-              <option value="All">All</option>
-              <option value="Spring 2023">Spring 2023</option>
-              <option value="Fall 2024">Fall 2024</option>
-              <option value="Spring 2024">Spring 2024</option>
-              <option value="Fall 2025">Fall 2025</option>
-              <option value="Spring 2025">Spring 2025</option>
-              <option value="Fall 2026">Fall 2026</option>
-              <option value="Spring 2026">Spring 2026</option>
-            </select>
-          </div>
+      </div>
+      <br />
+      <h3 class="has-text-weight-bold is-size-5 pb-2">Grad Year</h3>
+      <div>
+        <div class="select">
+          <select name="gradYear" id="choice">
+            <option value="All">All</option>
+            <option value="Spring 2023">Spring 2023</option>
+            <option value="Fall 2024">Fall 2024</option>
+            <option value="Spring 2024">Spring 2024</option>
+            <option value="Fall 2025">Fall 2025</option>
+            <option value="Spring 2025">Spring 2025</option>
+            <option value="Fall 2026">Fall 2026</option>
+            <option value="Spring 2026">Spring 2026</option>
+          </select>
         </div>
-        <br />
-        <h3 class="has-text-weight-bold is-size-5 pb-2">Term</h3>
-        <div>
-          <div class="select">
-            <select name="term" id="terms">
-              <option value="All">All</option>
-              <option value="Entire School Year">Entire School Year</option>
-              <option value="Spring/Summer">Spring/Summer</option>
-              <option value="Fall/Winter">Fall/Winter</option>
-              <option value="Indifferent">Indifferent</option>
-            </select>
-          </div>
+      </div>
+      <br />
+      <h3 class="has-text-weight-bold is-size-5 pb-2">Term</h3>
+      <div>
+        <div class="select">
+          <select name="term" id="terms">
+            <option value="All">All</option>
+            <option value="Entire School Year">Entire School Year</option>
+            <option value="Spring/Summer">Spring/Summer</option>
+            <option value="Fall/Winter">Fall/Winter</option>
+            <option value="Indifferent">Indifferent</option>
+          </select>
         </div>
+      </div>
 
-        <br />
-        <!-- <button
+      <br />
+      <!-- <button
           class="button has-text-white has-text-weight-bold is-black is-medium is-full-width is-inline-block mr-2"
           id="searchbtn"
         >
@@ -265,83 +214,67 @@
         >
           Reset
         </button> -->
-        <br />
-      </div>
-
-      <!--Column 2-->
-      <div
-        class="column is-three-quarters has-background-white has-text-centered r_col"
-      >
-        <div
-          id="card"
-          id="card-container"
-          style="height: 500px; width: 100%; overflow-y: scroll"
-        ></div>
-      </div>
+      <br />
     </div>
 
-    <!--Footer-->
+    <!--Column 2-->
+    <div class="column is-three-quarters has-background-white has-text-centered r_col">
+      <div id="card" id="card-container" style="height: 500px; width: 85%; overflow-y: scroll"></div>
+    </div>
+  </div>
 
-    <footer class="footer has-background-success-dark" id="footer">
-      <div class="content has-text-centered">
-        <p>
-          <a
-            href="https://union.wisc.edu/get-involved/jobs/"
-            class="fa-sharp fa-solid fa-magnifying-glass icon fa-2x mr-2"
-          ></a>
-          <a
-            href="https://www.facebook.com/TheWisconsinUnion"
-            class="fa fa-facebook icon fa-2x"
-          ></a>
-          <a
-            href="https://twitter.com/WisconsinUnion"
-            class="fa fa-twitter icon fa-2x"
-          ></a>
-          <a
-            href="https://www.youtube.com/user/wisconsinunion"
-            class="fa fa-youtube icon fa-2x ml-2"
-          ></a>
-        </p>
-      </div>
-    </footer>
+  <!--Footer-->
 
-    <!--Connect your Firebase -->
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+  <footer class="footer has-background-success-dark" id="footer">
+    <div class="content has-text-centered">
+      <p>
+        <a href="https://union.wisc.edu/get-involved/jobs/"
+          class="fa-sharp fa-solid fa-magnifying-glass icon fa-2x mr-2"></a>
+        <a href="https://www.facebook.com/TheWisconsinUnion" class="fa fa-facebook icon fa-2x"></a>
+        <a href="https://twitter.com/WisconsinUnion" class="fa fa-twitter icon fa-2x"></a>
+        <a href="https://www.youtube.com/user/wisconsinunion" class="fa fa-youtube icon fa-2x ml-2"></a>
+      </p>
+    </div>
+  </footer>
 
-    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+  <!--Connect your Firebase -->
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
 
-    <!-- Your web app's Firebase configuration -->
-    <script>
-      const firebaseConfig = {
-        apiKey: "AIzaSyBiuEVL794Z2RtAVtnXcKJWMRZtvrGQFFE",
-        authDomain: "unioncandidatetracker.firebaseapp.com",
-        projectId: "unioncandidatetracker",
-        storageBucket: "unioncandidatetracker.appspot.com",
-        messagingSenderId: "298706363890",
-        appId: "1:298706363890:web:e9c8f22ada6fe9f4d9f76b",
-      };
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
 
-      // Initialize Firebase
-      // const app = initializeApp(firebaseConfig);
+  <!-- Your web app's Firebase configuration -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBiuEVL794Z2RtAVtnXcKJWMRZtvrGQFFE",
+      authDomain: "unioncandidatetracker.firebaseapp.com",
+      projectId: "unioncandidatetracker",
+      storageBucket: "unioncandidatetracker.appspot.com",
+      messagingSenderId: "298706363890",
+      appId: "1:298706363890:web:e9c8f22ada6fe9f4d9f76b",
+    };
 
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      // define authentication variable
-      let auth = firebase.auth();
-      let db = firebase.firestore();
+    // Initialize Firebase
+    // const app = initializeApp(firebaseConfig);
 
-      // define a storage reference
-      let ref = firebase.storage().ref();
-    </script>
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // define authentication variable
+    let auth = firebase.auth();
+    let db = firebase.firestore();
 
-    <!-- add your own js file as the last line in index.html file -->
-    <script src="app.js"></script>
-  </body>
+    // define a storage reference
+    let ref = firebase.storage().ref();
+  </script>
+
+  <!-- add your own js file as the last line in index.html file -->
+  <script src="app.js"></script>
+</body>
+
 </html>
