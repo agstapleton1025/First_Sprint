@@ -207,7 +207,7 @@ candidateInfoRef.get().then((querySnapshot) => {
           <div class="media-content">
           <p class="title is-4">${
             doc.data().Name
-          } <button class="delete-card is-link">X</button></p>
+          } <button class="edit-card is-link">Edit</button> <button class="delete-card is-link" style="background: LightCoral" ">X</button></p>
           </div>
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
