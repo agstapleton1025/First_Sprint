@@ -140,7 +140,6 @@ signoutbtn.addEventListener("click", () => {
     hideContentCards(); // call function to hide content cards
   });
 });
-// Lucas Attempt at hiding cards for non-users
 // function to hide content cards
 function hideContentCards() {
   let contentCards = document.querySelectorAll(".content-card");
@@ -191,9 +190,7 @@ candidateInfoRef.get().then((querySnapshot) => {
           <div class="media-content">
             <p class="title is-4">${
               doc.data().Name
-            } <button id="edit_button"  class ="is-link" ">edit</button>
-            <button id="x_button"  class ="is-link has-text-white" style="background: LightCoral" ">X</button>
-            </p></p>
+            } <button id="x_button"  class ="is-link" ">X</button></p></p>
           </div>
           <p>Email: ${doc.data().Email}</p>
           <p>Unit: ${doc.data().UnitPreference}</p>
