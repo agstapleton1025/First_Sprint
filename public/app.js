@@ -76,7 +76,9 @@ signin_form.addEventListener("submit", (e) => {
       signinModal.classList.remove("is-active");
       // reset
       signin_form.reset();
+      window.location.reload()
     })
+
     .catch((error) => {
       console.log(error.message);
 
@@ -326,3 +328,63 @@ function temp(check) {
     }
   });
 }
+// testing
+
+// import puppeteer 
+
+// const puppeteer = require("puppeteer");
+
+// async function go() {
+//   const browser = await puppeteer.launch({
+//     headless: false,
+//     slowMo: 15,
+//   });
+
+//   const page = await browser.newPage();
+
+//   //   site the to be tested
+
+//   await page.goto("https://mycar-collection-f21.web.app/index_.html");
+
+//   // test sign in
+//   //   user click the sign-in button
+
+//   await page.click("#signinbtn");
+
+//   // user will provide email, password, and interests information
+
+//   await page.type("#email_", "admin@admin.com");
+//   await page.type("#password_", "Admin123");
+
+//   await page.click("#signin_form > div:nth-child(3) > div > button");
+
+//   // wait 2 seconds
+
+//   await new Promise((r) => setTimeout(r, 2000));
+
+//   // reload page (bug)
+//   await page.evaluate(() => {
+//     location.reload(true)
+//   })
+
+//   //   set 2 second delay
+
+//   // test filter 
+
+//   await page.check()
+
+//   await page.type("#search_bar", "test");
+
+//   await page.click("#search_button");
+
+//   //   click the submit button
+
+//   //   await page.click("#sum_submit");
+
+//   //   TODO : Test the sign-in feature using the same
+//   // email/password combination you have chosen to test the sign-up feature
+// }
+
+// // call the go()
+
+// go();
