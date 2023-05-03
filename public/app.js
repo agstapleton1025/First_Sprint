@@ -311,10 +311,10 @@ function temp(check) {
         const gradYearMatch =
           selectedGradYear === "All" ||
           card.dataset.gradYear === selectedGradYear;
-        console.log(card.dataset.gradYear, selectedGradYear);
+        // console.log(card.dataset.gradYear, selectedGradYear);
         const termMatch =
           selectedTerm === "All" || card.dataset.term === selectedTerm;
-        console.log(card.dataset.term, selectedTerm);
+        // console.log(card.dataset.terms, selectedTerm);
 
         // check if the card matches all the selected filters
         if (unitMatch && locationMatch && gradYearMatch && termMatch) {
