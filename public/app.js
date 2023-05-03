@@ -55,7 +55,7 @@ let signin_form = document.querySelector("#signin_form");
 
 signin_form.addEventListener("submit", (e) => {
   e.preventDefault();
-  // console.log('sign in form submitted!');
+
 
   // grab the email and password from the form
 
@@ -64,19 +64,15 @@ signin_form.addEventListener("submit", (e) => {
   auth
     .signInWithEmailAndPassword(email, password)
     .then((userCredentials) => {
-      console.log(
-        userCredentials.user.email +
-          " with the uid " +
-          userCredentials.user.uid +
-          " is logged in!"
-      );
+
       // close the modal
       signinModal.classList.remove("is-active");
       // reset
       signin_form.reset();
+      window.location.reload()
     })
     .catch((error) => {
-      console.log(error.message);
+
 
       // grab the error div
 
@@ -135,7 +131,7 @@ let signoutbtn = document.querySelector("#signoutbtn");
 
 signoutbtn.addEventListener("click", () => {
   auth.signOut().then(() => {
-    console.log("user signed out!");
+
     hideContentCards(); // call function to hide content cards
   });
 });
@@ -149,11 +145,11 @@ function hideContentCards() {
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    console.log("user is now signed in!");
+
     configureNav(user);
     // showContentCards(); // call function to show content cards
   } else {
-    console.log("user is now signed out!");
+
     configureNav();
     hideContentCards(); // call function to hide content cards
   }
@@ -183,7 +179,7 @@ function deleteCard(card) {
     .doc(docId)
     .delete()
     .then(() => {
-      console.log("Document successfully deleted");
+
     })
     .catch((error) => {
       console.error("Error deleting document: ", error);
@@ -192,8 +188,7 @@ function deleteCard(card) {
 
 let isAdmin = false;
 
-console.log("++");
-// console.log(auth.currentUser.email);
+
 
 setTimeout(() => {
   db.collection("users")
@@ -288,9 +283,9 @@ function temp(check) {
       const selectedTermFilter = Array.from(termFilter).find(
         (filter) => filter.checked
       );
-      const selectedTerm = selectedTermFilter
-        ? selectedTermFilter.value
-        : "All";
+      const selectedTerm = selectedTermFilter ?
+        selectedTermFilter.value :
+        "All";
 
       // filter the cards based on the selected filters
       const cards = Array.from(document.querySelectorAll(".card"));
@@ -309,10 +304,10 @@ function temp(check) {
         const gradYearMatch =
           selectedGradYear === "All" ||
           card.dataset.gradYear === selectedGradYear;
-        // console.log(card.dataset.gradYear, selectedGradYear);
+
         const termMatch =
           selectedTerm === "All" || card.dataset.term === selectedTerm;
-        // console.log(card.dataset.terms, selectedTerm);
+
 
         // check if the card matches all the selected filters
         if (unitMatch && locationMatch && gradYearMatch && termMatch) {
