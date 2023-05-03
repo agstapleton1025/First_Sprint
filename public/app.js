@@ -68,9 +68,9 @@ signin_form.addEventListener("submit", (e) => {
     .then((userCredentials) => {
       console.log(
         userCredentials.user.email +
-          " with the uid " +
-          userCredentials.user.uid +
-          " is logged in!"
+        " with the uid " +
+        userCredentials.user.uid +
+        " is logged in!"
       );
       // close the modal
       signinModal.classList.remove("is-active");
@@ -290,9 +290,9 @@ function temp(check) {
       const selectedTermFilter = Array.from(termFilter).find(
         (filter) => filter.checked
       );
-      const selectedTerm = selectedTermFilter
-        ? selectedTermFilter.value
-        : "All";
+      const selectedTerm = selectedTermFilter ?
+        selectedTermFilter.value :
+        "All";
 
       // filter the cards based on the selected filters
       const cards = Array.from(document.querySelectorAll(".card"));
