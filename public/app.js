@@ -90,10 +90,12 @@ function configure_content(user) {
     r_e("l_col").classList.remove("is-hidden");
     r_e("card").classList.remove("is-hidden");
     r_e("footer").classList.remove("is-hidden");
+    r_e("login-message").classList.add("is-hidden");
   } else {
     r_e("l_col").classList.add("is-hidden");
     r_e("card").classList.add("is-hidden");
     r_e("footer").classList.add("is-hidden");
+    r_e("login-message").classList.remove("is-hidden");
   }
 }
 
@@ -391,3 +393,12 @@ async function go() {
 // call the go()
 
 // go();
+
+// JavaScript code to add the message to the DOM
+const loginMessage = document.createElement('div');
+loginMessage.id = 'login-message';
+loginMessage.classList.add('has-text-centered', 'has-background-warning');
+loginMessage.innerHTML = '<p>You need to log in to view content.</p>';
+
+const contentSection = document.querySelector('#content-section');
+contentSection.insertBefore(loginMessage, footer);
