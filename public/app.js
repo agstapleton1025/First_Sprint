@@ -87,12 +87,12 @@ let contentCards = document.querySelectorAll(".content-card");
 
 function configure_content(user) {
   if (user) {
-    
+
     r_e("card").classList.remove("is-hidden");
     r_e("footer").classList.remove("is-hidden");
     r_e("login-message").classList.add("is-hidden");
   } else {
-    
+
     r_e("card").classList.add("is-hidden");
     r_e("footer").classList.add("is-hidden");
     r_e("login-message").classList.remove("is-hidden");
@@ -325,7 +325,7 @@ function temp(check) {
 
 // import puppeteer
 
-const puppeteer = require("puppeteer");
+const puppeteer = required("puppeteer");
 
 async function go() {
   const browser = await puppeteer.launch({
