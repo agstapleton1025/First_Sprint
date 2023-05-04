@@ -231,7 +231,7 @@ function temp(check) {
       cardContent += `
           </div>
           <p class="title is-4">${doc.data().Name}
-          <p>Email: ${doc.data().Email}</p>
+          <p>Email: <a href="mailto:${doc.data().Email}">${doc.data().Email}</a></p>
           <p>Unit: ${doc.data().UnitPreference}</p>
           <p>Location: ${doc.data().PreferredLocation}</p>
           <p>Grad Year: ${doc.data().PredictedGraduationDate}</p>
